@@ -1,7 +1,12 @@
-import "./App.css";
+import Page from "./components/landing"
 
 function App() {
-  return <></>;
+
+  return (
+    <div className="font-roboto">
+      <Page/>
+   </div>
+  )
 }
 
-export default App;
+export default App
