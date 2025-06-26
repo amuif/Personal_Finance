@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import "tailwindcss";
-@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @theme {
-  --font-roboto: "Roboto", sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
 }
 @custom-variant dark (&:is(.dark *));
 

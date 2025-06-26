@@ -1,12 +1,11 @@
-import Page from "./components/landing"
+import Page from './components/landing';
 
 function App() {
-
   return (
     <div className="font-roboto">
-      <Page/>
-   </div>
-  )
+      <Page />
+    </div>
+  );
 }
 
-export default App
+export default App;

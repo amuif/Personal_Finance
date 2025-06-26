@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   IconCamera,
   IconCategory2,
@@ -10,11 +10,11 @@ import {
   IconListDetails,
   IconPlus,
   IconSettings,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react';
 
-import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from '@/components/nav-main';
+import { NavSecondary } from '@/components/nav-secondary';
+import { NavUser } from '@/components/nav-user';
 import {
   Sidebar,
   SidebarContent,
@@ -23,93 +23,93 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 
 const data = {
   user: {
-    name: "amuif",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: 'amuif',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg',
   },
   navMain: [
     {
-      title: "Home",
-      url: "/",
+      title: 'Home',
+      url: '/',
       icon: IconCategory2,
     },
     {
-      title: "Create",
-      url: "/create",
+      title: 'Create',
+      url: '/create',
       icon: IconPlus,
     },
     {
-      title: "Wallet",
-      url: "wallet",
+      title: 'Wallet',
+      url: 'wallet',
       icon: IconListDetails,
     },
     {
-      title: "Analytics",
-      url: "analytics",
+      title: 'Analytics',
+      url: 'analytics',
       icon: IconChartBar,
     },
     {
-      title: "Plans",
-      url: "plans",
+      title: 'Plans',
+      url: 'plans',
       icon: IconFolder,
     },
   ],
   navClouds: [
     {
-      title: "Capture",
+      title: 'Capture',
       icon: IconCamera,
       isActive: true,
-      url: "#",
+      url: '#',
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: 'Active Proposals',
+          url: '#',
         },
         {
-          title: "Archived",
-          url: "#",
+          title: 'Archived',
+          url: '#',
         },
       ],
     },
     {
-      title: "Proposal",
+      title: 'Proposal',
       icon: IconFileDescription,
-      url: "#",
+      url: '#',
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: 'Active Proposals',
+          url: '#',
         },
         {
-          title: "Archived",
-          url: "#",
+          title: 'Archived',
+          url: '#',
         },
       ],
     },
     {
-      title: "Prompts",
+      title: 'Prompts',
       icon: IconFileAi,
-      url: "#",
+      url: '#',
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: 'Active Proposals',
+          url: '#',
         },
         {
-          title: "Archived",
-          url: "#",
+          title: 'Archived',
+          url: '#',
         },
       ],
     },
   ],
   navSecondary: [
     {
-      title: "Settings",
-      url: "settings",
+      title: 'Settings',
+      url: 'settings',
       icon: IconSettings,
     },
     //   {

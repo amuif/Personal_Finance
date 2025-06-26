@@ -1,4 +1,4 @@
-import { type Icon } from "@tabler/icons-react";
+import { type Icon } from '@tabler/icons-react';
 
 import {
   SidebarGroup,
@@ -6,8 +6,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { Link } from "@tanstack/react-router";
+} from '@/components/ui/sidebar';
+import { Link } from '@tanstack/react-router';
 
 export function NavMain({
   items,
@@ -33,10 +33,10 @@ export function NavMain({
                   to={item.url}
                   className="p-2 "
                   activeProps={{
-                    className: "!bg-primary !hover:bg-red-500 !text-white",
+                    className: '!bg-primary !hover:bg-red-500 !text-white',
                   }}
                 >
-                  {" "}
+                  {' '}
                   {item.icon && <item.icon />}
                   <span className="text-sm">{item.title}</span>
                 </Link>

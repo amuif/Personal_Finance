@@ -8,11 +8,9 @@
     "skipLibCheck": true,
 
     /* shadcn */
-      "baseUrl": ".",
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

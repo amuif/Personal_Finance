@@ -1,7 +1,7 @@
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { ModeToggle } from "./mode-toggle";
-import { useLocation } from "@tanstack/react-router";
+import { Separator } from '@/components/ui/separator';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { ModeToggle } from './mode-toggle';
+import { useLocation } from '@tanstack/react-router';
 
 export function SiteHeader() {
   const location = useLocation();
@@ -15,7 +15,7 @@ export function SiteHeader() {
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium capitalize">
-          {location.pathname === "/" ? "Home" : location.pathname.slice(1)}
+          {location.pathname === '/' ? 'Home' : location.pathname.slice(1)}
         </h1>
 
         <div className="ml-auto flex items-center gap-2">

@@ -1,4 +1,4 @@
-import z from "zod"
+import z from 'zod';
 
 export const Tableschema = z.object({
   id: z.number(),
@@ -9,5 +9,3 @@ export const Tableschema = z.object({
   limit: z.string(),
   reviewer: z.string(),
 });
-
-

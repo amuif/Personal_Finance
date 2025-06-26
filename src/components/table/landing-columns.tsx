@@ -1,43 +1,43 @@
-import type { ColumnDef } from "@tanstack/react-table";
-import { Tableschema } from "@/schemas/table_schema";
-import z from "zod";
-import { Checkbox } from "../ui/checkbox";
-import { IconDotsVertical } from "@tabler/icons-react";
-import { toast } from "sonner";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import type { ColumnDef } from '@tanstack/react-table';
+import { Tableschema } from '@/schemas/table_schema';
+import z from 'zod';
+import { Checkbox } from '../ui/checkbox';
+import { IconDotsVertical } from '@tabler/icons-react';
+import { toast } from 'sonner';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
-import { DragHandle } from "../data-table";
-import { TableCellViewer } from "../data-table";
+} from '../ui/dropdown-menu';
+import { Button } from '../ui/button';
+import { DragHandle } from '../data-table';
+import { TableCellViewer } from '../data-table';
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-} from "../ui/select";
+} from '../ui/select';
 
 const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
   {
-    id: "drag",
+    id: 'drag',
     header: () => null,
     cell: ({ row }) => <DragHandle id={row.original.id} />,
   },
   {
-    id: "select",
+    id: 'select',
     header: ({ table }) => (
       <div className="flex items-center justify-center">
         <Checkbox
           checked={
             table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
+            (table.getIsSomePageRowsSelected() && 'indeterminate')
           }
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Select all"
@@ -57,21 +57,21 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     enableHiding: false,
   },
   {
-    id: "row-number",
+    id: 'row-number',
     header: () => null,
     cell: ({ row }) => <p>{row.index + 1}</p>,
   },
   {
-    accessorKey: "header",
-    header: "Header",
+    accessorKey: 'header',
+    header: 'Header',
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />;
     },
     enableHiding: false,
   },
   {
-    accessorKey: "type",
-    header: "Type",
+    accessorKey: 'type',
+    header: 'Type',
     cell: ({ row }) => (
       <div className="w-32">
         <Select>
@@ -90,8 +90,8 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     ),
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: 'status',
+    header: 'Status',
     cell: ({ row }) => (
       <Select>
         <SelectTrigger className="!text-black dark:text-muted-foreground w-24 truncate">
@@ -107,7 +107,7 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     ),
   },
   {
-    accessorKey: "target",
+    accessorKey: 'target',
     header: () => (
       <div className="w-full flex items-center justify-center text-center">
         Target
@@ -119,8 +119,8 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
           e.preventDefault();
           toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
             loading: `Saving ${row.original.header}`,
-            success: "Done",
-            error: "Error",
+            success: 'Done',
+            error: 'Error',
           });
         }}
       >
@@ -136,7 +136,7 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     ),
   },
   {
-    accessorKey: "limit",
+    accessorKey: 'limit',
     header: () => (
       <div className="w-full flex items-center justify-center text-center">
         Limit
@@ -148,8 +148,8 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
           e.preventDefault();
           toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
             loading: `Saving ${row.original.header}`,
-            success: "Done",
-            error: "Error",
+            success: 'Done',
+            error: 'Error',
           });
         }}
       >
@@ -165,7 +165,7 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     ),
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: () => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
