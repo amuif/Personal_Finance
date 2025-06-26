@@ -5,7 +5,11 @@ import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
 export const Route = createRootRoute({
-  component: () => (
+  component: LoggedDisplay,
+});
+
+function LoggedDisplay() {
+  return (
     <div className="font-roboto">
       <SidebarProvider
         style={
@@ -23,5 +27,5 @@ export const Route = createRootRoute({
       </SidebarProvider>
       {/*      <TanStackRouterDevtools />*/}
     </div>
-  ),
-});
+  );
+}
