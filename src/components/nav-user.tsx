@@ -22,6 +22,9 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import useSidebar from '@/hooks/use-sidebar';
+import { supabase } from '@/supabase/supabase-client';
+import { redirect } from '@tanstack/react-router';
+
 export function NavUser({
   user,
 }: {
@@ -33,6 +36,23 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar();
 
+  async function handleLogOut() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error('Logout error:', error.message);
+      throw new Error('Failed to log out');
+    }
+
+    console.log('Signed out successfully');
+
+    throw redirect({
+      to: '/login',
+      search: {
+        redirect: location.href,
+      },
+    });
+  }
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -91,7 +111,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogOut}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

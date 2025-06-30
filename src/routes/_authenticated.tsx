@@ -7,6 +7,7 @@ import { SiteHeader } from '@/components/site-header';
 
 function HandleComponent() {
   const { user } = Route.useRouteContext();
+  console.log(user);
   if (!user) {
     return <Landing />;
   }

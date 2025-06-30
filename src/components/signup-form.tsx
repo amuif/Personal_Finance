@@ -6,30 +6,33 @@ import { useForm } from '@tanstack/react-form';
 import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
 import { redirect } from '@tanstack/react-router';
-import type { SetStateAction } from 'react';
+import React from 'react';
 
-export function LoginForm({
-  className,
+export default function SignUpForm({
   setShowLogIn,
+  className,
   ...props
 }: {
-  setShowLogIn: React.Dispatch<SetStateAction<boolean>>;
+  setShowLogIn: React.Dispatch<React.SetStateAction<boolean>>;
 } & React.ComponentProps<'form'>) {
   const form = useForm({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
 
     onSubmit: async () => {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signUp({
         email: form.getFieldValue('email'),
         password: form.getFieldValue('password'),
+        options: {
+          data: { name: form.getFieldValue('name') },
+        },
       });
       if (error) return toast.error('Error creating user');
-      toast.message(`Welcome back, ${data.session.user.email}`);
+      toast.message(`Welcome, ${form.getFieldValue('name')}`);
       redirect({ to: '/' });
-
       form.reset();
     },
   });
@@ -52,11 +55,46 @@ export function LoginForm({
         {...props}
       >
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold uppercase">Welcome back</h1>
+          <h1 className="text-2xl font-bold uppercase">
+            Welcome to Personal Finance
+          </h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your email below to login to your account
+            Control your finance like it's in your pocket
           </p>
         </div>
+        <div className="grid gap-3">
+          <Label htmlFor="name">Name</Label>
+          <form.Field
+            name="name"
+            validators={{
+              onChange: ({ value }) =>
+                !value ? 'A name is required' : undefined,
+              onChangeAsyncDebounceMs: 500,
+              onChangeAsync: async ({ value }) => {
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                return value.includes('error') && 'No "error" allowed in name';
+              },
+            }}
+            children={(field) => {
+              return (
+                <div className="flex flex-col gap-1.5">
+                  <Input
+                    id="name"
+                    placeholder="John Doe"
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    className=" "
+                  />
+                  {!field.state.meta.isValid && (
+                    <small className="text-destructive">
+                      {field.state.meta.errors.join(',')}
+                    </small>
+                  )}
+                </div>
+              );
+            }}
+          />{' '}
+        </div>
+
         <div className="grid gap-3">
           <Label htmlFor="email">Email</Label>
           <form.Field
@@ -92,12 +130,6 @@ export function LoginForm({
         <div className="grid gap-3">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
           </div>
           <form.Field
             name="password"
@@ -138,7 +170,7 @@ export function LoginForm({
         <form.Subscribe
           children={() => (
             <Button type="submit" className="w-full">
-              Login
+              Sign up
             </Button>
           )}
         />
@@ -219,13 +251,13 @@ export function LoginForm({
           Google{' '}
         </Button>
       </div>
-      <div className="text-center flex gap-2 mx-auto items-center justify-center text-sm">
-        Don&apos;t have an account?{' '}
+      <div className="text-center flex mx-auto items-center justify-center gap-2 text-sm">
+        Already have an account?{' '}
         <p
-          onClick={() => setShowLogIn(false)}
-          className="underline underline-offset-4 cursor-pointer"
+          onClick={() => setShowLogIn(true)}
+          className="underline cursor-pointer underline-offset-4"
         >
-          Sign up
+          Login
         </p>
       </div>
     </div>
