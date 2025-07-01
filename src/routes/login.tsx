@@ -3,7 +3,7 @@ import { LoginForm } from '@/components/login-form';
 import { MoveLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import SignUpForm from '@/components/signup-form';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@/components/theme-provider';
 export const Route = createFileRoute('/login')({
   component: LoginPage,
 });
@@ -11,10 +11,11 @@ export const Route = createFileRoute('/login')({
 export default function LoginPage() {
   const [showLogIn, setShowLogIn] = useState(true);
   const { theme } = useTheme();
+  console.log(theme);
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
-      <div className="flex flex-col gap-4 p-6 md:p-10">
-        <div className="flex  gap-2 justify-start">
+      <div className="flex relative flex-col gap-4 p-3 items-center justify-center ">
+        <div className="flex absolute gap-2 w-full top-5 left-5">
           <Link to="/" className="flex items-center gap-2 font-medium">
             <div className=" text-gray-500 dark:text-white/80 flex">
               <MoveLeftIcon
@@ -25,8 +26,8 @@ export default function LoginPage() {
             Home
           </Link>
         </div>
-        <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
+        <div className="flex items-center justify-center">
+          <div className="w-full max-w-xs transition-all duration-1000">
             {showLogIn ? (
               <LoginForm setShowLogIn={setShowLogIn} />
             ) : (
@@ -37,9 +38,9 @@ export default function LoginPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <img
-          src={`/images/${theme === 'dark' ? 'login_dark.svg' : 'login.png'}`}
+          src={`/images/login_dark.jpg`}
           alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.9] "
         />
       </div>
     </div>

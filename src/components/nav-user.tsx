@@ -45,13 +45,7 @@ export function NavUser({
     }
 
     console.log('Signed out successfully');
-
-    throw redirect({
-      to: '/login',
-      search: {
-        redirect: location.href,
-      },
-    });
+    window.location.href = '/landing';
   }
   return (
     <SidebarMenu>

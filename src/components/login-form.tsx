@@ -5,7 +5,6 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@tanstack/react-form';
 import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
-import { redirect } from '@tanstack/react-router';
 import type { SetStateAction } from 'react';
 
 export function LoginForm({
@@ -28,7 +27,7 @@ export function LoginForm({
       });
       if (error) return toast.error('Error creating user');
       toast.message(`Welcome back, ${data.session.user.email}`);
-      redirect({ to: '/' });
+      window.location.href = '/';
 
       form.reset();
     },
