@@ -26,9 +26,9 @@ export const navLinks: navLinksProps[] = [
 
 const LandingNav = () => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center bg-transparent z-50 sticky w-full">
       {' '}
-      <div className="p-4 flex justify-between items-center w-full">
+      <div className="p-4 flex justify-between items-center bg-transparent backdrop-blur-md w-full">
         <div className="flex gap-1">
           <img src="/images/logo.svg" alt="Logo" className="h-11 w-11" />
           <p className="flex items-center justify-center font-bold text-lg lg:text-xl ">

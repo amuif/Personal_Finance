@@ -23,7 +23,6 @@ import {
 } from '@/components/ui/sidebar';
 import useSidebar from '@/hooks/use-sidebar';
 import { supabase } from '@/supabase/supabase-client';
-import { redirect } from '@tanstack/react-router';
 
 export function NavUser({
   user,
