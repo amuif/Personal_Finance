@@ -8,72 +8,72 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as LandingRouteImport } from './routes/landing'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
-import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
-import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as LoginRouteImport } from './routes/login';
+import { Route as LandingRouteImport } from './routes/landing';
+import { Route as AboutRouteImport } from './routes/about';
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated';
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index';
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile';
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const LandingRoute = LandingRouteImport.update({
   id: '/landing',
   path: '/landing',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/about': typeof AboutRoute
-  '/landing': typeof LandingRoute
-  '/login': typeof LoginRoute
-  '/profile': typeof AuthenticatedProfileRoute
-  '/': typeof AuthenticatedIndexRoute
+  '/about': typeof AboutRoute;
+  '/landing': typeof LandingRoute;
+  '/login': typeof LoginRoute;
+  '/profile': typeof AuthenticatedProfileRoute;
+  '/': typeof AuthenticatedIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/about': typeof AboutRoute
-  '/landing': typeof LandingRoute
-  '/login': typeof LoginRoute
-  '/profile': typeof AuthenticatedProfileRoute
-  '/': typeof AuthenticatedIndexRoute
+  '/about': typeof AboutRoute;
+  '/landing': typeof LandingRoute;
+  '/login': typeof LoginRoute;
+  '/profile': typeof AuthenticatedProfileRoute;
+  '/': typeof AuthenticatedIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/about': typeof AboutRoute
-  '/landing': typeof LandingRoute
-  '/login': typeof LoginRoute
-  '/_authenticated/profile': typeof AuthenticatedProfileRoute
-  '/_authenticated/': typeof AuthenticatedIndexRoute
+  __root__: typeof rootRouteImport;
+  '/_authenticated': typeof AuthenticatedRouteWithChildren;
+  '/about': typeof AboutRoute;
+  '/landing': typeof LandingRoute;
+  '/login': typeof LoginRoute;
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute;
+  '/_authenticated/': typeof AuthenticatedIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/landing' | '/login' | '/profile' | '/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/landing' | '/login' | '/profile' | '/'
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/about' | '/landing' | '/login' | '/profile' | '/';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/about' | '/landing' | '/login' | '/profile' | '/';
   id:
     | '__root__'
     | '/_authenticated'
@@ -81,83 +81,83 @@ export interface FileRouteTypes {
     | '/landing'
     | '/login'
     | '/_authenticated/profile'
-    | '/_authenticated/'
-  fileRoutesById: FileRoutesById
+    | '/_authenticated/';
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
-  AboutRoute: typeof AboutRoute
-  LandingRoute: typeof LandingRoute
-  LoginRoute: typeof LoginRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren;
+  AboutRoute: typeof AboutRoute;
+  LandingRoute: typeof LandingRoute;
+  LoginRoute: typeof LoginRoute;
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/login';
+      path: '/login';
+      fullPath: '/login';
+      preLoaderRoute: typeof LoginRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/landing': {
-      id: '/landing'
-      path: '/landing'
-      fullPath: '/landing'
-      preLoaderRoute: typeof LandingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/landing';
+      path: '/landing';
+      fullPath: '/landing';
+      preLoaderRoute: typeof LandingRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/about';
+      path: '/about';
+      fullPath: '/about';
+      preLoaderRoute: typeof AboutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/_authenticated';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof AuthenticatedRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/_authenticated/': {
-      id: '/_authenticated/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
+      id: '/_authenticated/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
     '/_authenticated/profile': {
-      id: '/_authenticated/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AuthenticatedProfileRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
+      id: '/_authenticated/profile';
+      path: '/profile';
+      fullPath: '/profile';
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
   }
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute;
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute;
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
-}
+};
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
-  AuthenticatedRouteChildren,
-)
+  AuthenticatedRouteChildren
+);
 
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
   LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
