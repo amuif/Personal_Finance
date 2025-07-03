@@ -5,8 +5,9 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@tanstack/react-form';
 import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
-import type { SetStateAction } from 'react';
-
+import { useState, type SetStateAction } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { Checkbox } from './ui/checkbox';
 export function LoginForm({
   className,
   setShowLogIn,
@@ -14,6 +15,9 @@ export function LoginForm({
 }: {
   setShowLogIn: React.Dispatch<SetStateAction<boolean>>;
 } & React.ComponentProps<'form'>) {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -27,8 +31,7 @@ export function LoginForm({
       });
       if (error) return toast.error('Error creating user');
       toast.message(`Welcome back, ${data.session.user.email}`);
-      window.location.href = '/';
-
+      navigate({ to: '/' });
       form.reset();
     },
   });
@@ -74,6 +77,7 @@ export function LoginForm({
                 <div className="flex flex-col gap-1.5">
                   <Input
                     id="email"
+                    type="email"
                     placeholder="example@example.com "
                     onChange={(e) => field.handleChange(e.target.value)}
                     className=" "
@@ -117,14 +121,19 @@ export function LoginForm({
             }}
             children={(field) => {
               return (
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-3">
                   <Input
                     id="password"
-                    type="password"
+                    type={`${showPassword ? 'text' : 'password'}`}
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="Enter your password here"
                   />
-                  {!field.state.meta.isValid && (
+                  <div className="flex gap-2 items-center">
+                    <Checkbox onClick={() => setShowPassword(!showPassword)} />{' '}
+                    <Label>Show password</Label>
+                  </div>
+
+                  {!field.state.meta.isValid && field.state.meta.isTouched && (
                     <small className="text-destructive">
                       {field.state.meta.errors.join(',')}
                     </small>

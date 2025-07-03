@@ -5,8 +5,9 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@tanstack/react-form';
 import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
-import { redirect } from '@tanstack/react-router';
-import React from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import React, { useState } from 'react';
+import { Checkbox } from './ui/checkbox';
 
 export default function SignUpForm({
   setShowLogIn,
@@ -15,6 +16,8 @@ export default function SignUpForm({
 }: {
   setShowLogIn: React.Dispatch<React.SetStateAction<boolean>>;
 } & React.ComponentProps<'form'>) {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const form = useForm({
     defaultValues: {
       name: '',
@@ -32,7 +35,7 @@ export default function SignUpForm({
       });
       if (error) return toast.error('Error creating user');
       toast.message(`Welcome, ${form.getFieldValue('name')}`);
-      redirect({ to: '/' });
+      navigate({ to: '/' });
       form.reset();
     },
   });
@@ -153,10 +156,15 @@ export default function SignUpForm({
                 <div className="flex flex-col gap-1.5">
                   <Input
                     id="password"
-                    type="password"
+                    type={`${showPassword ? 'text' : 'password'}`}
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="Enter your password here"
                   />
+                  <div className="flex gap-2 items-center">
+                    <Checkbox onClick={() => setShowPassword(!showPassword)} />{' '}
+                    <Label>Show password</Label>
+                  </div>
+
                   {!field.state.meta.isValid && (
                     <small className="text-destructive">
                       {field.state.meta.errors.join(',')}
