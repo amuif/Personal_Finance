@@ -123,7 +123,7 @@ export function HeroSection() {
           </h1>
           <div className="absolute top-4 -right-4 lg:-right-12">
             <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center text-white shadow-lg animate-bounceSlow duration-1000 transition-all">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center text-white shadow-lg  duration-1000 transition-all">
                 <TrendingUp className="w-6 h-6" />
               </div>
               <div className="absolute inset-0 rounded-full border-2 border-primary opacity-20 animate-ping" />
@@ -131,7 +131,7 @@ export function HeroSection() {
           </div>
           <div className="absolute bottom-4 -left-4 lg:-left-12">
             <div className="relative">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-300 flex items-center justify-center text-white shadow-lg animate-bounceSlow duration-[2000] transition-all">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-300 flex items-center justify-center text-white shadow-lg  duration-[2000] transition-all">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div
