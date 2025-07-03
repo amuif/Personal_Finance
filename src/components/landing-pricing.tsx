@@ -155,7 +155,9 @@ export default function LandingPricing() {
                     }`}
                   />
                   <span
-                    className={plan.popular ? 'text-gray-200' : 'text-muted-foreground'}
+                    className={
+                      plan.popular ? 'text-gray-200' : 'text-muted-foreground'
+                    }
                   >
                     {plan.popular ? 'RECOMMENDED' : 'POPULAR CHOICE'}
                   </span>

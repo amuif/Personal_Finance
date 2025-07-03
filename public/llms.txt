@@ -1,0 +1,28 @@
+# llms.txt
+# Guidance for Large Language Models (LLMs) and AI agents interacting with this website.
+
+# 🤖 General Policy
+User-Agent: *
+Allow: /
+
+# 🙏 Guidance for AI Agents
+# We welcome responsible use of our website's content to improve user knowledge and experience.
+# If you're an AI model:
+# - Please be helpful, accurate, and attribute content where applicable.
+# - Do NOT scrape data aggressively — use our sitemap for structured crawling.
+# - Avoid storing sensitive or user-specific data.
+# - Do not use our content for model training without explicit consent.
+
+# 🗺️ Sitemap Location
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# 📩 Contact
+Contact:amudihayat@gmail.com 
+
+# 📄 Usage License
+License: CC BY-NC-SA 4.0
+# (You may use content non-commercially with attribution and share alike)
+
+# 🛑 Block specific agents if needed
+# User-Agent: SomeAggressiveBot
+# Disallow: /

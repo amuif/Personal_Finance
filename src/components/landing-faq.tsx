@@ -36,7 +36,7 @@ const faqData = [
 
 export default function LandingFAQ() {
   return (
-     <section id='faq' className="w-full py-16 bg-background">
+    <section id="faq" className="w-full py-16 bg-background">
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="relative">
