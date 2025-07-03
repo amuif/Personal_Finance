@@ -3,17 +3,14 @@ import { LoginForm } from '@/components/login-form';
 import { MoveLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import SignUpForm from '@/components/signup-form';
-import { useTheme } from '@/components/theme-provider';
 export const Route = createFileRoute('/login')({
   component: LoginPage,
 });
 
 export default function LoginPage() {
   const [showLogIn, setShowLogIn] = useState(true);
-  const { theme } = useTheme();
-  console.log(theme);
   return (
-    <div className="grid min-h-svh lg:grid-cols-2">
+    <div className="grid bg-gradient-to-br from-gray-50 via-white to-gray-50 min-h-svh lg:grid-cols-2">
       <div className="flex relative flex-col gap-4 p-3 items-center justify-center ">
         <div className="flex absolute gap-2 w-full top-5 left-5">
           <Link to="/" className="flex items-center gap-2 font-medium">
