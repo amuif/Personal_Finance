@@ -173,6 +173,7 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
             variant="ghost"
             className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
             size="icon"
+            aria-label='open menu'
           >
             <IconDotsVertical />
             <span className="sr-only">Open menu</span>

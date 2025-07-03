@@ -101,6 +101,7 @@ export function MobileNav({
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`lg:hidden w-10 h-10 rounded-full  hover:bg-[#194e3e]/10 flex items-center justify-center transition-colors`}
+        aria-label='navigation controlling button'
       >
         {isOpen ? (
           <X className="w-5 h-5 text-black" />

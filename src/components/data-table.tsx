@@ -103,6 +103,7 @@ export function DragHandle({ id }: { id: number }) {
       {...listeners}
       variant="ghost"
       size="icon"
+      aria-label='activates dragging to reorder'
       className={`${isDragging ? 'cursor-grabbing' : 'cursor-grab'} text-muted-foreground size-7 hover:bg-transparent`}
     >
       <IconGripVertical className="text-black dark:text-muted-foreground size-3" />
@@ -373,6 +374,7 @@ export function DataTable({
                 variant="outline"
                 className="size-8"
                 size="icon"
+                aria-label='go to previousPage'
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
               >
@@ -384,6 +386,7 @@ export function DataTable({
                 className="size-8"
                 size="icon"
                 onClick={() => table.nextPage()}
+                aria-label="go to next page"
                 disabled={!table.getCanNextPage()}
               >
                 <span className="sr-only">Go to next page</span>
@@ -393,6 +396,7 @@ export function DataTable({
                 variant="outline"
                 className="hidden size-8 lg:flex"
                 size="icon"
+                aria-label="go to last page"
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                 disabled={!table.getCanNextPage()}
               >
