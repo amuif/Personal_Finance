@@ -5,20 +5,20 @@ import {
   TrendingUp,
   FileText,
 } from 'lucide-react';
+
 const LandingFeatuers = () => {
   return (
-    <div id="features" className="px-3 py-12 flex flex-col gap-5">
-      <div className="text-center ">
-        <h4 className="text-center text-primary font-bold border rounded-full px-4 shadow-xl py-2 w-fit mx-auto">
+    <div id="features" className="px-4 py-16 flex flex-col gap-8 bg-background">
+      <div className="text-center">
+        <h4 className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
           Features
         </h4>
-        <div className="text-center pt-3">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+        <div className="pt-3">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
             Everything you need to run & <br /> grow your finance
           </h2>
         </div>
       </div>
-
       <BentoGrid />
     </div>
   );
@@ -77,100 +77,92 @@ export function BentoGrid() {
   const secondRow = Features.slice(3);
 
   return (
-    <section className="w-full py-10 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <div className="container px-4 md:px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+    <section className="w-full py-10 bg-gradient-to-br from-background via-white to-muted/50">
+      <div className="container px-2 md:px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {firstRow.map((feature, index) => (
             <div
               key={feature.id}
-              className="relative group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#194e3e]/20"
+              className="relative group bg-white rounded-2xl p-7 shadow-md hover:shadow-xl transition-all duration-300 border border-border hover:border-primary/20"
             >
               <div className="flex justify-center mb-8">
                 <div className="relative">
                   <div
-                    className={`w-24 h-24 rounded-full bg-gradient-to-br ${colors[index]} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-all duration-500 relative z-10`}
+                    className={`w-20 h-20 rounded-full bg-gradient-to-br ${colors[index]} flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-all duration-300 relative z-10`}
                   >
                     <feature.icon className="w-8 h-8" />
                   </div>
-
-                  <div className="absolute inset-0 rounded-full border-2 border-[#194e3e] opacity-20 animate-ping" />
+                  <div className="absolute inset-0 rounded-full border-2 border-primary opacity-20 animate-ping" />
                   <div
-                    className="absolute inset-0 rounded-full border border-[#194e3e] opacity-30 animate-pulse"
+                    className="absolute inset-0 rounded-full border border-primary opacity-30 animate-pulse"
                     style={{ animationDelay: `${index * 0.2}s` }}
                   />
-
                   <div
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-[#194e3e] rounded-full opacity-60 animate-bounce"
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full opacity-60 animate-bounce"
                     style={{ animationDelay: `${index * 0.3}s` }}
                   />
                 </div>
               </div>
-
-              <div className="text-center space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full text-xs font-medium text-gray-600 mb-2">
+              <div className="text-center space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-xs font-medium text-muted-foreground mb-2">
                   <div
                     className={`w-2 h-2 rounded-full bg-gradient-to-r ${colors[index]}`}
                   />
                   CORE FEATURE
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+                <h3 className="text-xl font-semibold text-foreground leading-tight">
                   {feature.name}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {secondRow.map((feature, index) => (
             <div
               key={feature.id}
-              className="relative group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#194e3e]/20"
+              className="relative group bg-white rounded-2xl p-7 shadow-md hover:shadow-xl transition-all duration-300 border border-border hover:border-primary/20"
             >
               <div className="flex justify-center mb-8">
                 <div className="relative">
                   <div
-                    className={`w-24 h-24 rounded-full bg-gradient-to-br ${colors[index + 3]} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-all duration-500 relative z-10`}
+                    className={`w-20 h-20 rounded-full bg-gradient-to-br ${colors[index + 3]} flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-all duration-300 relative z-10`}
                   >
                     <feature.icon className="w-8 h-8" />
                   </div>
-
                   <div
-                    className="absolute inset-0 rounded-full border border-[#194e3e] opacity-30 animate-pulse"
+                    className="absolute inset-0 rounded-full border border-primary opacity-30 animate-pulse"
                     style={{ animationDelay: `${(index + 3) * 0.2}s` }}
                   />
-
                   <div
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-[#194e3e] rounded-full opacity-60 animate-bounce"
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full opacity-60 animate-bounce"
                     style={{ animationDelay: `${(index + 3) * 0.3}s` }}
                   />
                 </div>
               </div>
-
-              <div className="text-center space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full text-xs font-medium text-gray-600 mb-2">
+              <div className="text-center space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-xs font-medium text-muted-foreground mb-2">
                   <div
                     className={`w-2 h-2 rounded-full bg-gradient-to-r ${colors[index + 3]}`}
                   />
                   CORE FEATURE
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+                <h3 className="text-xl font-semibold text-foreground leading-tight">
                   {feature.name}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="text-center mt-20">
-          <div className="inline-flex flex-col items-center gap-6">
-            <div className="flex items-center gap-4 text-gray-600">
+        <div className="text-center mt-16">
+          <div className="inline-flex flex-col items-center gap-4">
+            <div className="flex items-center gap-4 text-muted-foreground">
               <span className="text-sm font-medium">
                 All features are included in every plan
               </span>

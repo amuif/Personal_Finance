@@ -43,19 +43,18 @@ const LandingHowItWorks = () => {
   ];
 
   return (
-    <section id="steps" className="w-full py-10 ">
+    <section id="steps" className="w-full py-16 bg-background">
       <div className="container px-4 md:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-20">
-          <h4 className="text-center text-primary font-bold border rounded-full px-4 shadow-xl py-2 w-fit mx-auto">
+          <h4 className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
             How it works
           </h4>
-          <div className="text-center mb-16 pt-3">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+          <div className="mb-16 pt-3">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
               Your Path to Financial Freedom
             </h2>
           </div>
         </div>
-
         <div className="relative">
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 hidden md:block">
             <svg
@@ -80,7 +79,6 @@ const LandingHowItWorks = () => {
               </defs>
             </svg>
           </div>
-
           <div className="space-y-16 md:space-y-24">
             {steps.map((step, index) => (
               <div
@@ -91,40 +89,37 @@ const LandingHowItWorks = () => {
               >
                 <div className="flex-1 text-center md:text-left">
                   <div className="inline-flex items-center gap-3 mb-4">
-                    <span className="text-sm font-bold text-gray-400 tracking-wider">
+                    <span className="text-xs font-bold text-muted-foreground tracking-wider">
                       STEP
                     </span>
-                    <span className="text-3xl font-bold text-[#194e3e]">
+                    <span className="text-3xl font-bold text-primary">
                       {step.step}
                     </span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
                     {step.title}
                   </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed max-w-md mx-auto md:mx-0">
+                  <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0">
                     {step.description}
                   </p>
                 </div>
-
                 <div className="flex-1 flex justify-center">
                   <div className="relative group">
                     <div
-                      className={`w-32 h-32 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-2xl group-hover:scale-110 transition-all duration-500 relative z-10`}
+                      className={`w-28 h-28 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-xl group-hover:scale-105 transition-all duration-300 relative z-10`}
                     >
                       {step.icon}
                     </div>
-
-                    <div className="absolute inset-0 rounded-full border-2 border-[#194e3e] opacity-20 animate-ping" />
+                    <div className="absolute inset-0 rounded-full border-2 border-primary opacity-20 animate-ping" />
                     <div
-                      className="absolute inset-0 rounded-full border border-[#194e3e] opacity-30 animate-pulse"
+                      className="absolute inset-0 rounded-full border border-primary opacity-30 animate-pulse"
                       style={{ animationDelay: '0.5s' }}
                     />
                   </div>
                 </div>
-
                 {index < steps.length - 1 && (
                   <div className="md:hidden flex justify-center">
-                    <ArrowDown className="w-6 h-6 text-[#194e3e] animate-bounce" />
+                    <ArrowDown className="w-6 h-6 text-primary animate-bounce" />
                   </div>
                 )}
               </div>
