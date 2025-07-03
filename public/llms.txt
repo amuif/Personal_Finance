@@ -14,7 +14,7 @@ Allow: /
 # - Do not use our content for model training without explicit consent.
 
 # 🗺️ Sitemap Location
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap:  https://clarityfinance.netlify.app/sitemap.xml
 
 # 📩 Contact
 Contact:amudihayat@gmail.com 
