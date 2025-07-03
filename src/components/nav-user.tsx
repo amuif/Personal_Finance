@@ -44,7 +44,7 @@ export function NavUser({
     }
 
     console.log('Signed out successfully');
-    window.location.href = '/landing';
+    window.location.href = '/login';
   }
   return (
     <SidebarMenu>
