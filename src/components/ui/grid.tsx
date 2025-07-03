@@ -62,7 +62,7 @@ export default function FadingGrid({
         </pattern>
 
         <mask id={maskId}>
-          <radialGradient id={`${maskId}-gradient`} cx="50%" cy="50%" r="40%">
+          <radialGradient id={`${maskId}-gradient`} cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="white" stopOpacity="1" />
             <stop offset="40%" stopColor="white" stopOpacity="0.8" />
             <stop offset="70%" stopColor="white" stopOpacity="0.3" />
