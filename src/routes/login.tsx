@@ -3,8 +3,11 @@ import { LoginForm } from '@/components/login-form';
 import { MoveLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import SignUpForm from '@/components/signup-form';
+import LoadingComponent from '@/components/loading-component';
+
 export const Route = createFileRoute('/login')({
   component: LoginPage,
+  pendingComponent: LoadingComponent,
 });
 
 export default function LoginPage() {

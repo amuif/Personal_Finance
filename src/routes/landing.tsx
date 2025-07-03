@@ -5,10 +5,12 @@ import LandingHowItWorks from '@/components/landing-how';
 import LandingNav from '@/components/landing-nav';
 import LandingPricing from '@/components/landing-pricing';
 import LandingFeatuers from '@/components/landing-services';
+import LoadingComponent from '@/components/loading-component';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/landing')({
   component: Landing,
+  pendingComponent: LoadingComponent,
 });
 export function Landing() {
   return (

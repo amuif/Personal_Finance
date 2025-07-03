@@ -4,6 +4,7 @@ import { Landing } from './landing';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
+import LoadingComponent from '@/components/loading-component';
 
 function HandleComponent() {
   const { user } = Route.useRouteContext();
@@ -42,4 +43,5 @@ export const Route = createFileRoute('/_authenticated')({
     }
   },
   component: HandleComponent,
+  pendingComponent: LoadingComponent,
 });

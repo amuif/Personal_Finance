@@ -7,6 +7,7 @@ export default async function getCurrentUser() {
   if (error) {
     toast.error('Error getting user');
   }
+  console.info(data.user)
   return data;
 }
 

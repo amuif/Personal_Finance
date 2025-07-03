@@ -1,3 +1,4 @@
+import LoadingComponent from '@/components/loading-component';
 import { currentUser } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
@@ -5,6 +6,7 @@ import { toast } from 'sonner';
 
 export const Route = createFileRoute('/_authenticated/profile')({
   component: Profile,
+  pendingComponent: LoadingComponent,
 });
 function Profile() {
   const { data, error } = useQuery(currentUser);

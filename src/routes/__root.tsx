@@ -2,12 +2,14 @@ import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { supabase } from '@/supabase/supabase-client';
+import LoadingComponent from '@/components/loading-component';
 
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: LoggedDisplay,
+  pendingComponent: LoadingComponent,
 });
 
 function LoggedDisplay() {
