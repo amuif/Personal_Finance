@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from './ui/button';
 interface navLinksProps {
@@ -73,11 +73,17 @@ const LandingNav = () => {
 export default LandingNav;
 
 export function DesktopNav() {
+  const location = useLocation();
+  const currentHash = location.hash?.replace('#', '') || 'Home';
+  console.log(currentHash);
   return (
     <div className="flex gap-5 ">
       {navLinks.map(({ id, name, href }) => (
         <div key={id}>
-          <Link to={href} className="text-lg text-black">
+          <Link
+            to={href}
+            className={`text-lg ${currentHash === href.slice(1) ? 'text-primary font-bold' : 'text-black'}`}
+          >
             {name}
           </Link>
         </div>

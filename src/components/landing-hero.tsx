@@ -3,7 +3,7 @@ const LandingHero = () => {
   return (
     <div
       id="home"
-      className="flex items-center justify-center min-h-[80vh] w-full bg-background"
+      className="flex items-center justify-center min-h-screen w-full "
     >
       <HeroSection />
     </div>
@@ -29,9 +29,9 @@ const floatingIcons = [
     Icon: Wallet,
     bottom: '25%',
     left: '8%',
-    delay: '0.5s',
-    duration: '9s',
-    size: 'w-5 h-5',
+    delay: '4s',
+    duration: '6s',
+    size: 'w-6 h-6',
   },
   {
     Icon: BarChart3,
@@ -45,9 +45,9 @@ const floatingIcons = [
     Icon: TrendingDown,
     top: '60%',
     left: '12%',
-    delay: '2.5s',
-    duration: '7s',
-    size: 'w-5 h-5',
+    delay: '4s',
+    duration: '6s',
+    size: 'w-6 h-6',
   },
   {
     Icon: Coins,
@@ -61,32 +61,31 @@ const floatingIcons = [
     Icon: Target,
     bottom: '45%',
     left: '20%',
-    delay: '3.5s',
-    duration: '7s',
+    delay: '4s',
+    duration: '6s',
     size: 'w-6 h-6',
   },
   {
     Icon: Star,
     top: '55%',
     right: '30%',
-    delay: '4.2s',
-    duration: '7s',
-    size: 'w-4 h-4',
+    delay: '4s',
+    duration: '6s',
+    size: 'w-6 h-6',
   },
   {
     Icon: TrendingUp,
     top: '70%',
     left: '30%',
-    delay: '3.2s',
-    duration: '9s',
+    delay: '1s',
+    duration: '3s',
     size: 'w-6 h-6',
   },
 ];
 
 export function HeroSection() {
   return (
-    <div className="flex w-full pt-16 lg:pt-32 relative overflow-hidden bg-gradient-to-br from-background via-white to-muted/50">
-      {/* Floating icons */}
+    <div className="flex w-full  relative overflow-hidden ">
       {floatingIcons.map((item, index) => (
         <div
           key={index}
@@ -110,13 +109,6 @@ export function HeroSection() {
             >
               <item.Icon className="w-full h-full" />
             </div>
-            <div
-              className={`absolute inset-0 ${item.size} bg-primary/10 rounded-full blur-md animate-pulse`}
-              style={{
-                animationDelay: `calc(${item.delay} + 1s)`,
-                animationDuration: `calc(${item.duration} + 2s)`,
-              }}
-            />
           </div>
         </div>
       ))}
@@ -131,7 +123,7 @@ export function HeroSection() {
           </h1>
           <div className="absolute top-4 -right-4 lg:-right-12">
             <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center text-white shadow-lg animate-bounce">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center text-white shadow-lg animate-bounceSlow duration-1000 transition-all">
                 <TrendingUp className="w-6 h-6" />
               </div>
               <div className="absolute inset-0 rounded-full border-2 border-primary opacity-20 animate-ping" />
@@ -139,7 +131,7 @@ export function HeroSection() {
           </div>
           <div className="absolute bottom-4 -left-4 lg:-left-12">
             <div className="relative">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-300 flex items-center justify-center text-white shadow-lg animate-bounce">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-300 flex items-center justify-center text-white shadow-lg animate-bounceSlow duration-[2000] transition-all">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div
