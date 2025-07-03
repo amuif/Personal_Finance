@@ -79,7 +79,7 @@ export function DesktopNav() {
         <div key={id}>
           <Link
             to={href}
-            className="text-lg [&.active]:font-bold [&.active]:text-primary"
+            className="text-lg "
           >
             {name}
           </Link>
@@ -126,7 +126,7 @@ export function MobileNav({
                   key={link.id}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#194e3e] hover:bg-[#194e3e]/5 rounded-xl transition-all duration-300 group [&.active:font-bold] [&.active:text-primary]"
+                  className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#194e3e] hover:bg-[#194e3e]/5 rounded-xl transition-all duration-300 group "
                 >
                   <div className="relative">
                     <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#194e3e] to-[#4a9d7a] opacity-60 group-hover:opacity-100 transition-opacity" />
