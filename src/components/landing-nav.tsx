@@ -77,10 +77,7 @@ export function DesktopNav() {
     <div className="flex gap-5 ">
       {navLinks.map(({ id, name, href }) => (
         <div key={id}>
-          <Link
-            to={href}
-            className="text-lg "
-          >
+          <Link to={href} className="text-lg ">
             {name}
           </Link>
         </div>
