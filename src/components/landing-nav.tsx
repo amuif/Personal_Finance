@@ -46,7 +46,7 @@ const LandingNav = () => {
       >
         <div className="flex gap-1">
           <img src="/images/logo.svg" alt="Logo" className="h-11 w-11" />
-          <p className="flex items-center justify-center font-bold text-lg lg:text-xl ">
+          <p className="flex items-center text-black justify-center font-bold text-lg lg:text-xl ">
             Clarity
           </p>
         </div>
