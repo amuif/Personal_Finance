@@ -10,9 +10,9 @@ const LandingFeatuers = () => {
   return (
     <div id="features" className="px-4 py-16 flex flex-col gap-8 bg-background">
       <div className="text-center">
-        <h4 className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
+        <p className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
           Features
-        </h4>
+        </p>
         <div className="pt-3">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
             Everything you need to run & <br /> grow your finance

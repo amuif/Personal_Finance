@@ -52,9 +52,9 @@ export default function LandingFAQ() {
                   </div>
                 </div>
               </div>
-              <h4 className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit bg-white">
+              <p className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit bg-white">
                 FAQ
-              </h4>
+              </p>
               <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 pt-3">
                 What people ask about Clarity
               </h3>

@@ -63,9 +63,9 @@ export default function LandingPricing() {
   ];
   return (
     <section id="pricing" className="w-full py-20 lg:py-32 bg-background">
-      <h4 className="text-center text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
+      <p className="text-center text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
         Pricing
-      </h4>
+      </p>
       <div className="container px-4 md:px-6 max-w-7xl mx-auto pt-3">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">

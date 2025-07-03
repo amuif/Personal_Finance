@@ -103,7 +103,7 @@ export function DragHandle({ id }: { id: number }) {
       {...listeners}
       variant="ghost"
       size="icon"
-      aria-label='activates dragging to reorder'
+      aria-label="activates dragging to reorder"
       className={`${isDragging ? 'cursor-grabbing' : 'cursor-grab'} text-muted-foreground size-7 hover:bg-transparent`}
     >
       <IconGripVertical className="text-black dark:text-muted-foreground size-3" />
@@ -374,7 +374,7 @@ export function DataTable({
                 variant="outline"
                 className="size-8"
                 size="icon"
-                aria-label='go to previousPage'
+                aria-label="go to previousPage"
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
               >

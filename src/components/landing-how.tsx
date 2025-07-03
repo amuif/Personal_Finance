@@ -46,9 +46,9 @@ const LandingHowItWorks = () => {
     <section id="steps" className="w-full py-16 bg-background">
       <div className="container px-4 md:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-20">
-          <h4 className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
+          <p className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
             How it works
-          </h4>
+          </p>
           <div className="mb-16 pt-3">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
               Your Path to Financial Freedom
