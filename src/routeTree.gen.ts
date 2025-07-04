@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpdatePasswordRouteImport } from './routes/update-password'
+import { Route as PasswordResetRouteImport } from './routes/password-reset'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LandingRouteImport } from './routes/landing'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
@@ -17,6 +19,16 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 
+const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
+  id: '/update-password',
+  path: '/update-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PasswordResetRoute = PasswordResetRouteImport.update({
+  id: '/password-reset',
+  path: '/password-reset',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -57,6 +69,8 @@ export interface FileRoutesByFullPath {
   '/coming-soon': typeof ComingSoonRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
+  '/password-reset': typeof PasswordResetRoute
+  '/update-password': typeof UpdatePasswordRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/': typeof AuthenticatedIndexRoute
 }
@@ -65,6 +79,8 @@ export interface FileRoutesByTo {
   '/coming-soon': typeof ComingSoonRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
+  '/password-reset': typeof PasswordResetRoute
+  '/update-password': typeof UpdatePasswordRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/': typeof AuthenticatedIndexRoute
 }
@@ -75,6 +91,8 @@ export interface FileRoutesById {
   '/coming-soon': typeof ComingSoonRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
+  '/password-reset': typeof PasswordResetRoute
+  '/update-password': typeof UpdatePasswordRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
 }
@@ -85,10 +103,20 @@ export interface FileRouteTypes {
     | '/coming-soon'
     | '/landing'
     | '/login'
+    | '/password-reset'
+    | '/update-password'
     | '/profile'
     | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/coming-soon' | '/landing' | '/login' | '/profile' | '/'
+  to:
+    | '/about'
+    | '/coming-soon'
+    | '/landing'
+    | '/login'
+    | '/password-reset'
+    | '/update-password'
+    | '/profile'
+    | '/'
   id:
     | '__root__'
     | '/_authenticated'
@@ -96,6 +124,8 @@ export interface FileRouteTypes {
     | '/coming-soon'
     | '/landing'
     | '/login'
+    | '/password-reset'
+    | '/update-password'
     | '/_authenticated/profile'
     | '/_authenticated/'
   fileRoutesById: FileRoutesById
@@ -106,10 +136,26 @@ export interface RootRouteChildren {
   ComingSoonRoute: typeof ComingSoonRoute
   LandingRoute: typeof LandingRoute
   LoginRoute: typeof LoginRoute
+  PasswordResetRoute: typeof PasswordResetRoute
+  UpdatePasswordRoute: typeof UpdatePasswordRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/update-password': {
+      id: '/update-password'
+      path: '/update-password'
+      fullPath: '/update-password'
+      preLoaderRoute: typeof UpdatePasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/password-reset': {
+      id: '/password-reset'
+      path: '/password-reset'
+      fullPath: '/password-reset'
+      preLoaderRoute: typeof PasswordResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -182,6 +228,8 @@ const rootRouteChildren: RootRouteChildren = {
   ComingSoonRoute: ComingSoonRoute,
   LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
+  PasswordResetRoute: PasswordResetRoute,
+  UpdatePasswordRoute: UpdatePasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

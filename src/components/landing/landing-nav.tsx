@@ -74,8 +74,7 @@ export default LandingNav;
 
 export function DesktopNav() {
   const location = useLocation();
-  const currentHash = location.hash?.replace('#', '') || 'Home';
-  console.log(currentHash);
+  const currentHash = location.hash?.replace('#', '') || 'home';
   return (
     <div className="flex gap-5 ">
       {navLinks.map(({ id, name, href }) => (
@@ -92,7 +91,7 @@ export function DesktopNav() {
   );
 }
 
-import { useState, type SetStateAction } from 'react';
+import { useEffect, useRef, useState, type SetStateAction } from 'react';
 import { Menu, X } from 'lucide-react';
 
 export function MobileNav({
@@ -102,6 +101,27 @@ export function MobileNav({
   isOpen: boolean;
   setIsOpen: React.Dispatch<SetStateAction<boolean>>;
 }) {
+  const location = useLocation();
+  const currentHash = location.hash?.replace('#', '') || 'home';
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setIsOpen]);
+
   return (
     <>
       <button
@@ -123,14 +143,17 @@ export function MobileNav({
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-xl z-50 animate-in slide-in-from-top-2 duration-300">
+          <div
+            ref={popupRef}
+            className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-xl z-50 animate-in slide-in-from-top-2 duration-300"
+          >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link, index) => (
                 <Link
                   key={link.id}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#194e3e] hover:bg-[#194e3e]/5 rounded-xl transition-all duration-300 group "
+                  className={`flex items-center gap-3 px-4 py-3 ${currentHash === link.href.slice(1) ? 'text-primary font-bold' : 'text-black'} hover:bg-[#194e3e]/5 rounded-xl transition-all duration-300 group `}
                 >
                   <div className="relative">
                     <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#194e3e] to-[#4a9d7a] opacity-60 group-hover:opacity-100 transition-opacity" />

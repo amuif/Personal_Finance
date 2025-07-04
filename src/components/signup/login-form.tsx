@@ -6,7 +6,7 @@ import { useForm } from '@tanstack/react-form';
 import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
 import { useState, type SetStateAction } from 'react';
-import { useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { Checkbox } from '@/components/ui/checkbox';
 export function LoginForm({
   className,
@@ -17,6 +17,7 @@ export function LoginForm({
 } & React.ComponentProps<'form'>) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [showErorr, setShowError] = useState('');
 
   const form = useForm({
     defaultValues: {
@@ -29,7 +30,15 @@ export function LoginForm({
         email: form.getFieldValue('email'),
         password: form.getFieldValue('password'),
       });
-      if (error) return toast.error('Error creating user');
+      if (error) {
+        if (error.message === 'Invalid login credentials') {
+          setShowError('Wrong email or password');
+        } else {
+          console.error('Login error:', error.message);
+        }
+        return;
+      }
+      setShowError('');
       toast.message(`Welcome back, ${data.session.user.email}`);
       navigate({ to: '/' });
       form.reset();
@@ -80,7 +89,7 @@ export function LoginForm({
                     type="email"
                     placeholder="example@example.com "
                     onChange={(e) => field.handleChange(e.target.value)}
-                    className=" "
+                    className="autofill:bg-input/30"
                   />
                   {!field.state.meta.isValid && (
                     <small className="text-destructive">
@@ -95,12 +104,12 @@ export function LoginForm({
         <div className="grid gap-3">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
+            <Link
+              to="/password-reset"
               className="ml-auto text-sm underline-offset-4 hover:underline"
             >
               Forgot your password?
-            </a>
+            </Link>
           </div>
           <form.Field
             name="password"
@@ -127,11 +136,15 @@ export function LoginForm({
                     type={`${showPassword ? 'text' : 'password'}`}
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="Enter your password here"
+                    autoComplete="off"
                   />
                   <div className="flex gap-2 items-center">
                     <Checkbox onClick={() => setShowPassword(!showPassword)} />{' '}
                     <Label>Show password</Label>
                   </div>
+                  {showErorr && (
+                    <small className="py-0 text-destructive">{showErorr}</small>
+                  )}
 
                   {!field.state.meta.isValid && field.state.meta.isTouched && (
                     <small className="text-destructive">

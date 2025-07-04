@@ -125,3 +125,9 @@ html {
     @apply bg-background text-foreground;
   }
 }
+input:-webkit-autofill {
+  @apply bg-input/30 text-foreground shadow-xs;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.05) inset !important;
+  -webkit-text-fill-color: theme('colors.foreground.DEFAULT') !important;
+  transition: background-color 9999s ease-in-out 0s;
+}

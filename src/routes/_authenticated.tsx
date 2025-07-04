@@ -5,10 +5,15 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
 import LoadingComponent from '@/components/loading-component';
+import { useTheme } from '@/components/theme-provider';
 
 function HandleComponent() {
   const { user } = Route.useRouteContext();
   console.log(user);
+
+  const { setTheme } = useTheme();
+  if (!user) setTheme('light');
+
   if (!user) {
     return <Landing />;
   }

@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { useNavigate } from '@tanstack/react-router';
 const LandingHero = () => {
   return (
     <div
@@ -84,6 +85,10 @@ const floatingIcons = [
 ];
 
 export function HeroSection() {
+  const navigate = useNavigate();
+  function handleLogin() {
+    navigate({ to: '/login' });
+  }
   return (
     <div className="flex w-full  relative overflow-hidden ">
       {floatingIcons.map((item, index) => (
@@ -151,20 +156,16 @@ export function HeroSection() {
             <span>AI-powered insights</span>
           </div>
         </div>
-        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button className="group relative px-8 py-5 bg-primary text-white rounded-full font-semibold text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <Button
+            onClick={handleLogin}
+            className="group relative px-8 py-5 bg-primary text-white rounded-full font-semibold text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
             <span className="relative z-10 flex items-center gap-2">
               Get Started
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-emerald-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </Button>
-          <Button
-            variant="outline"
-            className="px-8 py-5 border-2 border-primary text-primary hover:bg-primary hover:text-white bg-transparent rounded-full font-semibold text-lg transition-all duration-300"
-          >
-            Login
           </Button>
         </div>
       </div>
