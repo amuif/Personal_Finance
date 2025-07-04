@@ -8,6 +8,7 @@ import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
+
 export const Route = createFileRoute('/update-password')({
   component: PasswordRecovery,
 });
