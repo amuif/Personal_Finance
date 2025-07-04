@@ -67,10 +67,6 @@ export default function LandingFAQ() {
           </div>
           <div className="relative">
             <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full opacity-15 animate-bounce hidden lg:block" />
-            <div
-              className="absolute top-32 -left-4 w-4 h-4 bg-emerald-400 rounded-full opacity-25 animate-bounce hidden lg:block"
-              style={{ animationDelay: '0.8s' }}
-            />
             <Accordion type="multiple" className="space-y-4">
               {faqData.map((faq, index) => (
                 <AccordionItem
@@ -80,7 +76,6 @@ export default function LandingFAQ() {
                 >
                   <AccordionTrigger className="px-6 py-6 text-left hover:no-underline group [&[data-state=open]]:border-b [&[data-state=open]]:border-border">
                     <div className="flex items-center gap-4 w-full">
-                      {/* Question number */}
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                         {index + 1}
                       </div>

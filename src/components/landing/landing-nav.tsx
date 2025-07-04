@@ -1,6 +1,6 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
 interface navLinksProps {
   id: number;
   name: string;

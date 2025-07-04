@@ -7,7 +7,7 @@ import { supabase } from '@/supabase/supabase-client';
 import { toast } from 'sonner';
 import { useNavigate } from '@tanstack/react-router';
 import React, { useState } from 'react';
-import { Checkbox } from './ui/checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export default function SignUpForm({
   setShowLogIn,

@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { LoginForm } from '@/components/login-form';
+import { LoginForm } from '@/components/signup/login-form';
 import { MoveLeftIcon } from 'lucide-react';
 import { useState } from 'react';
-import SignUpForm from '@/components/signup-form';
+import SignUpForm from '@/components/signup/signup-form';
 import LoadingComponent from '@/components/loading-component';
 
 export const Route = createFileRoute('/login')({

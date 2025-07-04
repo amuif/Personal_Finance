@@ -1,10 +1,10 @@
-import LandingFAQ from '@/components/landing-faq';
-import LandingFooter from '@/components/landing-footer';
-import LandingHero from '@/components/landing-hero';
-import LandingHowItWorks from '@/components/landing-how';
-import LandingNav from '@/components/landing-nav';
-import LandingPricing from '@/components/landing-pricing';
-import LandingFeatuers from '@/components/landing-services';
+import LandingFAQ from '@/components/landing/landing-faq';
+import LandingFooter from '@/components/landing/landing-footer';
+import LandingHero from '@/components/landing/landing-hero';
+import LandingHowItWorks from '@/components/landing/landing-how';
+import LandingNav from '@/components/landing/landing-nav';
+import LandingPricing from '@/components/landing/landing-pricing';
+import LandingFeatuers from '@/components/landing/landing-services';
 import LoadingComponent from '@/components/loading-component';
 import { createFileRoute } from '@tanstack/react-router';
 

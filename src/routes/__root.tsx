@@ -3,13 +3,14 @@ import type { QueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { supabase } from '@/supabase/supabase-client';
 import LoadingComponent from '@/components/loading-component';
-
+import NotFound from '@/components/others/not-found';
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: LoggedDisplay,
   pendingComponent: LoadingComponent,
+  notFoundComponent: NotFound,
 });
 
 function LoggedDisplay() {
