@@ -35,7 +35,7 @@ export default function SignUpForm({
       });
       if (error) return toast.error('Error creating user');
       toast.message(`Welcome, ${form.getFieldValue('name')}`);
-      navigate({ to: '/' });
+      navigate({ to: '/dashboard' });
       form.reset();
     },
   });

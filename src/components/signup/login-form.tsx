@@ -40,7 +40,7 @@ export function LoginForm({
       }
       setShowError('');
       toast.message(`Welcome back, ${data.session.user.email}`);
-      navigate({ to: '/' });
+      navigate({ to: '/dashboard' });
       form.reset();
     },
   });

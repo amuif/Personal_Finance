@@ -6,7 +6,6 @@ import {
   IconFileAi,
   IconFileDescription,
   IconFolder,
-  IconInnerShadowTop,
   IconListDetails,
   IconPlus,
   IconSettings,
@@ -21,7 +20,6 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
@@ -34,7 +32,7 @@ const data = {
   navMain: [
     {
       title: 'Home',
-      url: '/',
+      url: '/dashboard',
       icon: IconCategory2,
     },
     {
@@ -126,15 +124,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Amuif Plans</span>
-              </a>
-            </SidebarMenuButton>
+            <div className=" flex data-[slot=sidebar-menu-button]:!p-1.5">
+              <div className="flex flex-row gap-1">
+                <img
+                  src="/images/logo.svg"
+                  alt="logo"
+                  aria-label="logo "
+                  className="object-cover h-8 w-8 aspect-square"
+                />
+                <span className="text-xl font-semibold">Clarity</span>
+              </div>
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

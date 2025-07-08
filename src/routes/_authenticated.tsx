@@ -1,21 +1,28 @@
 import { currentUser } from '@/lib/api';
-import { createFileRoute, Outlet } from '@tanstack/react-router';
-import { Landing } from './landing';
+import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
-import LoadingComponent from '@/components/loading-component';
-import { useTheme } from '@/components/theme-provider';
+
+export const Route = createFileRoute('/_authenticated')({
+  beforeLoad: async ({ context }) => {
+    const queryClient = context.queryClient;
+    try {
+      const data = await queryClient.fetchQuery(currentUser);
+      return data;
+    } catch {
+      return { user: null };
+    }
+  },
+  component: HandleComponent,
+});
 
 function HandleComponent() {
   const { user } = Route.useRouteContext();
-  console.log(user);
-
-  const { setTheme } = useTheme();
-  if (!user) setTheme('light');
-
+  const navigate = useNavigate();
   if (!user) {
-    return <Landing />;
+    navigate({ to: '/landing' });
+    return;
   }
   return (
     <div className="font-roboto">
@@ -37,16 +44,3 @@ function HandleComponent() {
     </div>
   );
 }
-export const Route = createFileRoute('/_authenticated')({
-  beforeLoad: async ({ context }) => {
-    const queryClient = context.queryClient;
-    try {
-      const data = await queryClient.fetchQuery(currentUser);
-      return data;
-    } catch {
-      return { user: null };
-    }
-  },
-  component: HandleComponent,
-  pendingComponent: LoadingComponent,
-});

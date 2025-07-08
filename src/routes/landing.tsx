@@ -6,11 +6,13 @@ import LandingNav from '@/components/landing/landing-nav';
 import LandingPricing from '@/components/landing/landing-pricing';
 import LandingFeatuers from '@/components/landing/landing-services';
 import LoadingComponent from '@/components/loading-component';
+import NotFound from '@/components/others/not-found';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/landing')({
   component: Landing,
   pendingComponent: LoadingComponent,
+  notFoundComponent: NotFound,
 });
 export function Landing() {
   return (

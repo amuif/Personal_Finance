@@ -56,7 +56,7 @@ export default function PasswordRecovery() {
       if (error)
         toast.error(<p className="absolute">Error creating new password</p>);
       toast(<p className="absoulte">Password updated successfully</p>);
-      navigate({ to: '/' });
+      navigate({ to: '/dashboard' });
     },
   });
   return (
