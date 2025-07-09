@@ -25,8 +25,8 @@ const Form = ({ className }: { className?: string }) => {
       </CardHeader>
       <CardContent className="flex flex-col space-y-10">
         <div className="flex flex-col space-y-10">
-          <div className="flex flex-row gap-5">
-            <div className="flex gap-2 w-full">
+          <div className="flex flex-col justify-between items-center lg:flex-row gap-5">
+            <div className="flex gap-5 lg:gap-2 w-full">
               <Label>Name</Label>
               <Input placeholder="Expense name" className="" />
             </div>
@@ -35,8 +35,8 @@ const Form = ({ className }: { className?: string }) => {
               <Input placeholder="Enter amount" className="" />
             </div>
           </div>
-          <div className="flex flex-row gap-5">
-            <div className="flex gap-2 w-full">
+          <div className="flex flex-col justify-between items-center lg:flex-row gap-5">
+            <div className="flex gap-5 lg:gap-2 w-full">
               <Label className="whitespace-nowrap">Type</Label>
               <Select>
                 <SelectTrigger className="w-full">
@@ -69,7 +69,7 @@ const Form = ({ className }: { className?: string }) => {
         </div>
         <div className="flex flex-col gap-2">
           <Label>Details(optional)</Label>
-          <Textarea placeholder="Enter details here" className="h-28" />
+          <Textarea placeholder="Enter details here" className="h-36" />
         </div>
       </CardContent>
     </Card>
