@@ -1,4 +1,9 @@
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import {
+  createRootRouteWithContext,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { supabase } from '@/supabase/supabase-client';
@@ -14,6 +19,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function LoggedDisplay() {
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (event, session) => {
@@ -25,11 +32,15 @@ function LoggedDisplay() {
         }, 0);
       }
     );
+    const pathname = location.pathname;
+    if (pathname === '/') {
+      navigate({ to: '/dashboard' });
+    }
 
     return () => {
       listener.subscription.unsubscribe();
     };
-  }, []);
+  }, [location.pathname, navigate]);
 
   return (
     <div className="font-roboto">
