@@ -46,14 +46,14 @@ const data = {
       icon: IconListDetails,
     },
     {
-      title: 'Analytics',
-      url: 'analytics',
-      icon: IconChartBar,
-    },
-    {
       title: 'Plans',
       url: 'plans',
       icon: IconFolder,
+    },
+    {
+      title: 'Consult',
+      url: 'consult',
+      icon: IconChartBar,
     },
   ],
   navClouds: [

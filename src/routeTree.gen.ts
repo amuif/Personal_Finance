@@ -22,7 +22,7 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedPlansRouteImport } from './routes/_authenticated/plans'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCreateRouteImport } from './routes/_authenticated/create'
-import { Route as AuthenticatedAnalyticsRouteImport } from './routes/_authenticated/analytics'
+import { Route as AuthenticatedConsultRouteImport } from './routes/_authenticated/consult'
 
 const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
   id: '/update-password',
@@ -88,9 +88,9 @@ const AuthenticatedCreateRoute = AuthenticatedCreateRouteImport.update({
   path: '/create',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthenticatedAnalyticsRoute = AuthenticatedAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
+const AuthenticatedConsultRoute = AuthenticatedConsultRouteImport.update({
+  id: '/consult',
+  path: '/consult',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
@@ -101,7 +101,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/password-reset': typeof PasswordResetRoute
   '/update-password': typeof UpdatePasswordRoute
-  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/consult': typeof AuthenticatedConsultRoute
   '/create': typeof AuthenticatedCreateRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/plans': typeof AuthenticatedPlansRoute
@@ -116,7 +116,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/password-reset': typeof PasswordResetRoute
   '/update-password': typeof UpdatePasswordRoute
-  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/consult': typeof AuthenticatedConsultRoute
   '/create': typeof AuthenticatedCreateRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/plans': typeof AuthenticatedPlansRoute
@@ -133,7 +133,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/password-reset': typeof PasswordResetRoute
   '/update-password': typeof UpdatePasswordRoute
-  '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
+  '/_authenticated/consult': typeof AuthenticatedConsultRoute
   '/_authenticated/create': typeof AuthenticatedCreateRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/plans': typeof AuthenticatedPlansRoute
@@ -150,7 +150,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/password-reset'
     | '/update-password'
-    | '/analytics'
+    | '/consult'
     | '/create'
     | '/dashboard'
     | '/plans'
@@ -165,7 +165,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/password-reset'
     | '/update-password'
-    | '/analytics'
+    | '/consult'
     | '/create'
     | '/dashboard'
     | '/plans'
@@ -181,7 +181,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/password-reset'
     | '/update-password'
-    | '/_authenticated/analytics'
+    | '/_authenticated/consult'
     | '/_authenticated/create'
     | '/_authenticated/dashboard'
     | '/_authenticated/plans'
@@ -293,18 +293,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCreateRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/analytics': {
-      id: '/_authenticated/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof AuthenticatedAnalyticsRouteImport
+    '/_authenticated/consult': {
+      id: '/_authenticated/consult'
+      path: '/consult'
+      fullPath: '/consult'
+      preLoaderRoute: typeof AuthenticatedConsultRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedAnalyticsRoute: typeof AuthenticatedAnalyticsRoute
+  AuthenticatedConsultRoute: typeof AuthenticatedConsultRoute
   AuthenticatedCreateRoute: typeof AuthenticatedCreateRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedPlansRoute: typeof AuthenticatedPlansRoute
@@ -314,7 +314,7 @@ interface AuthenticatedRouteChildren {
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedAnalyticsRoute: AuthenticatedAnalyticsRoute,
+  AuthenticatedConsultRoute: AuthenticatedConsultRoute,
   AuthenticatedCreateRoute: AuthenticatedCreateRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedPlansRoute: AuthenticatedPlansRoute,
