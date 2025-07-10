@@ -12,10 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UpdatePasswordRouteImport } from './routes/update-password'
 import { Route as PasswordResetRouteImport } from './routes/password-reset'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as LandingRouteImport } from './routes/landing'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedWalletRouteImport } from './routes/_authenticated/wallet'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
@@ -39,11 +39,6 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LandingRoute = LandingRouteImport.update({
-  id: '/landing',
-  path: '/landing',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ComingSoonRoute = ComingSoonRouteImport.update({
   id: '/coming-soon',
   path: '/coming-soon',
@@ -56,6 +51,11 @@ const AboutRoute = AboutRouteImport.update({
 } as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedWalletRoute = AuthenticatedWalletRouteImport.update({
@@ -95,9 +95,9 @@ const AuthenticatedConsultRoute = AuthenticatedConsultRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
-  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
   '/password-reset': typeof PasswordResetRoute
   '/update-password': typeof UpdatePasswordRoute
@@ -110,9 +110,9 @@ export interface FileRoutesByFullPath {
   '/wallet': typeof AuthenticatedWalletRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
-  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
   '/password-reset': typeof PasswordResetRoute
   '/update-password': typeof UpdatePasswordRoute
@@ -126,10 +126,10 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
-  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
   '/password-reset': typeof PasswordResetRoute
   '/update-password': typeof UpdatePasswordRoute
@@ -144,9 +144,9 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/about'
     | '/coming-soon'
-    | '/landing'
     | '/login'
     | '/password-reset'
     | '/update-password'
@@ -159,9 +159,9 @@ export interface FileRouteTypes {
     | '/wallet'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/about'
     | '/coming-soon'
-    | '/landing'
     | '/login'
     | '/password-reset'
     | '/update-password'
@@ -174,10 +174,10 @@ export interface FileRouteTypes {
     | '/wallet'
   id:
     | '__root__'
+    | '/'
     | '/_authenticated'
     | '/about'
     | '/coming-soon'
-    | '/landing'
     | '/login'
     | '/password-reset'
     | '/update-password'
@@ -191,10 +191,10 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
   ComingSoonRoute: typeof ComingSoonRoute
-  LandingRoute: typeof LandingRoute
   LoginRoute: typeof LoginRoute
   PasswordResetRoute: typeof PasswordResetRoute
   UpdatePasswordRoute: typeof UpdatePasswordRoute
@@ -223,13 +223,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/landing': {
-      id: '/landing'
-      path: '/landing'
-      fullPath: '/landing'
-      preLoaderRoute: typeof LandingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/coming-soon': {
       id: '/coming-soon'
       path: '/coming-soon'
@@ -249,6 +242,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/wallet': {
@@ -328,10 +328,10 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
   ComingSoonRoute: ComingSoonRoute,
-  LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
   PasswordResetRoute: PasswordResetRoute,
   UpdatePasswordRoute: UpdatePasswordRoute,
