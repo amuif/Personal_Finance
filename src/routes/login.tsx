@@ -16,7 +16,7 @@ export default function LoginPage() {
     <div className="grid   min-h-svh lg:grid-cols-2">
       <div className="flex relative flex-col gap-4 p-3 items-center justify-center ">
         <div className="flex absolute gap-2 w-full top-5 left-5">
-          <Link to="/landing" className="flex items-center gap-2 font-medium">
+          <Link to="/" className="flex items-center gap-2 font-medium">
             <div className=" text-gray-500 dark:text-white/80 flex">
               <MoveLeftIcon
                 width={20}

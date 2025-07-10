@@ -1,3 +1,4 @@
+import PlansIndex from '@/components/plans/plans-index';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_authenticated/plans')({
@@ -5,5 +6,9 @@ export const Route = createFileRoute('/_authenticated/plans')({
 });
 
 function RouteComponent() {
-  return <div>Hello "/_authenticated/plans"!</div>;
+  return (
+    <div>
+      <PlansIndex />
+    </div>
+  );
 }

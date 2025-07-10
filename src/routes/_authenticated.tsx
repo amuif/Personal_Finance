@@ -3,6 +3,7 @@ import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
+import { useEffect } from 'react';
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: async ({ context }) => {
@@ -20,10 +21,12 @@ export const Route = createFileRoute('/_authenticated')({
 function HandleComponent() {
   const { user } = Route.useRouteContext();
   const navigate = useNavigate();
-  if (!user) {
-    navigate({ to: '/landing' });
-    return;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate({ to: '/' });
+      return;
+    }
+  }, [user, navigate]);
   return (
     <div className="font-roboto">
       <SidebarProvider

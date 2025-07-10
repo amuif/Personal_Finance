@@ -22,6 +22,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { Target } from 'lucide-react';
 
 const data = {
   user: {
@@ -125,14 +126,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <div className=" flex data-[slot=sidebar-menu-button]:!p-1.5">
-              <div className="flex flex-row gap-1">
-                <img
-                  src="/images/logo.svg"
-                  alt="logo"
-                  aria-label="logo "
-                  className="object-cover h-8 w-8 aspect-square"
-                />
-                <span className="text-xl font-semibold">Clarity</span>
+              <div className="flex items-center gap-2 font-semibold">
+                <div className="w-8 h-8 rounded-lg bg-[#194e3e] flex items-center justify-center">
+                  <Target className="w-4 h-4 text-white" />
+                </div>
+                <span>Clarity Finance</span>
               </div>
             </div>
           </SidebarMenuItem>
