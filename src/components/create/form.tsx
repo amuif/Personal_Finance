@@ -69,7 +69,7 @@ const Form = ({ className }: { className?: string }) => {
         </div>
         <div className="flex flex-col gap-2">
           <Label>Details(optional)</Label>
-          <Textarea placeholder="Enter details here" className="h-36" />
+          <Textarea placeholder="Enter details here" className="h-20" />
         </div>
       </CardContent>
     </Card>
