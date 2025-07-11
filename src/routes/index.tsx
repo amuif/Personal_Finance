@@ -4,10 +4,7 @@ import NotFound from '@/components/others/not-found';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
-  component: Landing,
+  component: LandingIndex,
   pendingComponent: LoadingComponent,
   notFoundComponent: NotFound,
 });
-export function Landing() {
-  return <LandingIndex />;
-}

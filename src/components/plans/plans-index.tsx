@@ -1,17 +1,8 @@
 import { useState } from 'react';
-import {
-  Target,
-  DollarSign,
-  TrendingUp,
-  CheckCircle,
-} from 'lucide-react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import PlansTable from './plans-table';
+import type { Goal, StatCard } from '@/types/plans';
 function PlansIndex() {
   return (
     <div>
@@ -21,26 +12,6 @@ function PlansIndex() {
 }
 
 export default PlansIndex;
-
-interface Goal {
-  id: string;
-  name: string;
-  description: string;
-  targetAmount: number;
-  currentAmount: number;
-  deadline: string;
-  category: string;
-  color: string;
-  createdAt: string;
-  status: 'active' | 'completed' | 'paused';
-}
-
-interface StatCard {
-  title: string;
-  value: string | number;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
 
 export function DashboardGoals() {
   const [goals] = useState<Goal[]>([
@@ -82,7 +53,7 @@ export function DashboardGoals() {
       status: 'completed',
     },
   ]);
-// Calculate stats
+  // Calculate stats
   const totalGoals = goals.length;
   const activeGoals = goals.filter((goal) => goal.status === 'active').length;
   const completedGoals = goals.filter(
@@ -96,52 +67,43 @@ export function DashboardGoals() {
     (sum, goal) => sum + goal.currentAmount,
     0
   );
+
   const overallProgress =
     totalTargetAmount > 0 ? (totalCurrentAmount / totalTargetAmount) * 100 : 0;
 
-  // Stats cards data
   const statsCards: StatCard[] = [
     {
       title: 'Total Goals',
       value: totalGoals,
       description: `${activeGoals} active, ${completedGoals} completed`,
-      icon: Target,
     },
     {
       title: 'Total Target',
       value: `$${totalTargetAmount.toLocaleString()}`,
       description: 'Across all goals',
-      icon: DollarSign,
     },
     {
       title: 'Total Saved',
       value: `$${totalCurrentAmount.toLocaleString()}`,
       description: `${overallProgress.toFixed(1)}% of target`,
-      icon: TrendingUp,
     },
     {
       title: 'Overall Progress',
       value: `${overallProgress.toFixed(1)}%`,
       description: 'Progress indicator',
-      icon: CheckCircle,
     },
   ];
 
   return (
-    <div className=" bg-background">
-      <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight">Goals Dashboard</h1>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-          {statsCards.map((stat, index) => (
+    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+        {statsCards.map((stat, index) => (
+          <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs  @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
             <Card key={index}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="capitalize font-bold text-lg">
                   {stat.title}
                 </CardTitle>
-                <stat.icon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stat.value}</div>
@@ -153,9 +115,12 @@ export function DashboardGoals() {
                 )}
               </CardContent>
             </Card>
-          ))}
-        </div>
-      </main>
-    </div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <PlansTable data={goals} />
+      </div>
+    </main>
   );
 }
