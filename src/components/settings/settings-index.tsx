@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {
   Shield,
@@ -115,7 +114,7 @@ export default function SettingsIndex() {
     amount: '$19.99',
     paymentMethod: '**** **** **** 4242',
   });
-   const handleProfileUpdate = () => {
+  const handleProfileUpdate = () => {
     // Mock update logic
     console.log('Profile updated:', profileData);
   };
@@ -573,9 +572,7 @@ export default function SettingsIndex() {
                     </Select>
                   </div>
                 </div>
-
-
-               </CardContent>
+              </CardContent>
             </Card>
 
             <Card>

@@ -25,7 +25,6 @@ function LoggedDisplay() {
   const navigate = useNavigate();
 
   useEffect(() => {
-   
     const { data: listener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setTimeout(() => {

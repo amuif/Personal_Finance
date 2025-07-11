@@ -8,7 +8,7 @@ import LandingFeatuers from '@/components/landing/landing-services';
 
 const LandingIndex = () => {
   return (
-    <div className="flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="flex flex-col !bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <LandingNav />
       <LandingHero />
       <LandingFeatuers />

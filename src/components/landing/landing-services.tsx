@@ -8,7 +8,7 @@ import {
 
 const LandingFeatuers = () => {
   return (
-    <div id="features" className="px-4 py-16 flex flex-col gap-8 bg-background">
+    <div id="features" className="px-4 py-16 flex flex-col gap-8">
       <div className="text-center">
         <p className="text-primary font-bold border rounded-full px-4 shadow-md py-2 w-fit mx-auto bg-white">
           Features
@@ -77,7 +77,7 @@ export function BentoGrid() {
   const secondRow = Features.slice(3);
 
   return (
-    <section className="w-full py-10 bg-gradient-to-br from-background via-white to-muted/50">
+    <section className="w-full py-10 ">
       <div className="container px-2 md:px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {firstRow.map((feature, index) => (

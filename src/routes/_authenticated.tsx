@@ -11,7 +11,6 @@ export const Route = createFileRoute('/_authenticated')({
     try {
       const data = await queryClient.fetchQuery(currentUser);
       if (!data?.user) {
-        
         throw new Error('Not authenticated');
       }
       return data;
