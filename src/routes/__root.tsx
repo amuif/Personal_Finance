@@ -9,9 +9,11 @@ import { useEffect } from 'react';
 import { supabase } from '@/supabase/supabase-client';
 import LoadingComponent from '@/components/loading-component';
 import NotFound from '@/components/others/not-found';
+
 interface MyRouterContext {
   queryClient: QueryClient;
 }
+
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: LoggedDisplay,
   pendingComponent: LoadingComponent,
@@ -21,7 +23,9 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 function LoggedDisplay() {
   const location = useLocation();
   const navigate = useNavigate();
+
   useEffect(() => {
+   
     const { data: listener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setTimeout(() => {
@@ -32,14 +36,21 @@ function LoggedDisplay() {
         }, 0);
       }
     );
-    const pathname = location.pathname;
-    if (pathname === '/') {
-      navigate({ to: '/dashboard' });
-    }
-
     return () => {
       listener.subscription.unsubscribe();
     };
+  }, [location.pathname, navigate]);
+
+  useEffect(() => {
+    async function checkAuthAndRedirect() {
+      if (location.pathname === '/') {
+        const { data } = await supabase.auth.getUser();
+        if (data?.user) {
+          navigate({ to: '/dashboard', replace: true });
+        }
+      }
+    }
+    checkAuthAndRedirect();
   }, [location.pathname, navigate]);
 
   return (

@@ -10,6 +10,10 @@ export const Route = createFileRoute('/_authenticated')({
     const queryClient = context.queryClient;
     try {
       const data = await queryClient.fetchQuery(currentUser);
+      if (!data?.user) {
+        
+        throw new Error('Not authenticated');
+      }
       return data;
     } catch {
       return { user: null };
@@ -43,7 +47,6 @@ function HandleComponent() {
           <Outlet />
         </SidebarInset>
       </SidebarProvider>
-      {/*      <TanStackRouterDevtools />*/}
     </div>
   );
 }
