@@ -1,28 +1,6 @@
-const ConsultIndex = () => {
-  return (
-    <div>
-      <AIConsultant />
-    </div>
-  );
-};
-
-export default ConsultIndex;
-
 import type React from 'react';
-
 import { useState, useRef, useEffect } from 'react';
-import {
-  Send,
-  Bot,
-  User,
-  MessageSquare,
-  Clock,
-  Copy,
-  ThumbsUp,
-  ThumbsDown,
-  RefreshCw,
-  Target,
-} from 'lucide-react';
+import { Copy, ThumbsUp, ThumbsDown, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -34,37 +12,19 @@ import {
 } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import type { Message, QuickPrompt, StatCard } from '@/types/consult';
+import Clara from '../../../public/images/clara.png';
 
-interface Message {
-  id: string;
-  content: string;
-  sender: 'user' | 'ai';
-  timestamp: Date;
-  isTyping?: boolean;
-}
+const ConsultIndex = () => {
+  return (
+    <div>
+      <AIConsultant />
+    </div>
+  );
+};
 
-interface StatCard {
-  title: string;
-  value: string | number;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
-
-interface QuickPrompt {
-  id: string;
-  title: string;
-  prompt: string;
-  category: string;
-}
+export default ConsultIndex;
 
 export function AIConsultant() {
   const [messages, setMessages] = useState<Message[]>([
@@ -111,36 +71,31 @@ export function AIConsultant() {
     },
   ];
 
-  // Calculate stats
   const totalMessages = messages.length;
   const userMessages = messages.filter((msg) => msg.sender === 'user').length;
   const aiResponses = messages.filter((msg) => msg.sender === 'ai').length;
-  const avgResponseTime = '1.2s'; // Mock data
+  const avgResponseTime = '1.2s';
 
   const statsCards: StatCard[] = [
     {
       title: 'Total Messages',
       value: totalMessages,
       description: 'In this conversation',
-      icon: MessageSquare,
     },
     {
       title: 'Questions Asked',
       value: userMessages,
       description: 'Your inquiries',
-      icon: User,
     },
     {
       title: 'AI Responses',
       value: aiResponses,
       description: 'Expert answers provided',
-      icon: Bot,
     },
     {
       title: 'Avg Response Time',
       value: avgResponseTime,
       description: 'Lightning fast replies',
-      icon: Clock,
     },
   ];
 
@@ -166,7 +121,6 @@ export function AIConsultant() {
     setInputMessage('');
     setIsLoading(true);
 
-    // Simulate AI response
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
@@ -180,7 +134,6 @@ export function AIConsultant() {
   };
 
   const generateAIResponse = (userInput: string): string => {
-    // Simple mock AI responses based on keywords
     const input = userInput.toLowerCase();
 
     if (input.includes('budget') || input.includes('spending')) {
@@ -231,55 +184,8 @@ export function AIConsultant() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="flex h-14 items-center justify-between border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-        <div className="flex items-center gap-2 font-semibold">
-          <div className="w-8 h-8 rounded-lg bg-[#194e3e] flex items-center justify-center">
-            <Target className="w-4 h-4 text-white" />
-          </div>
-          <span>Clarity Finance</span>
-        </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src="/avatars/01.png" alt="Avatar" />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-              <span className="sr-only">Toggle user menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </header>
-
-      {/* Page Content */}
+    <div className=" bg-background">
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-        {/* Page Title */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">
-              AI Financial Consultant
-            </h1>
-            <p className="text-muted-foreground">
-              Get expert financial advice powered by AI
-            </p>
-          </div>
-          <Button variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
-            New Conversation
-          </Button>
-        </div>
-
-        {/* Stats Cards */}
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           {statsCards.map((stat, index) => (
             <Card key={index}>
@@ -287,7 +193,6 @@ export function AIConsultant() {
                 <CardTitle className="text-sm font-medium">
                   {stat.title}
                 </CardTitle>
-                <stat.icon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stat.value}</div>
@@ -300,7 +205,6 @@ export function AIConsultant() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-4">
-          {/* Quick Prompts Sidebar */}
           <Card className="lg:col-span-1">
             <CardHeader>
               <CardTitle className="text-lg">Quick Prompts</CardTitle>
@@ -313,11 +217,11 @@ export function AIConsultant() {
                 <Button
                   key={prompt.id}
                   variant="outline"
-                  className="w-full justify-start text-left h-auto p-3 bg-transparent"
+                  className="w-full justify-start text-left   h-auto p-3 bg-transparent"
                   onClick={() => handleQuickPrompt(prompt.prompt)}
                 >
-                  <div>
-                    <div className="font-medium text-sm">{prompt.title}</div>
+                  <div className="text-wrap">
+                    <div className="font-medium  text-sm">{prompt.title}</div>
                     <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
                       {prompt.prompt}
                     </div>
@@ -327,24 +231,30 @@ export function AIConsultant() {
             </CardContent>
           </Card>
 
-          {/* Chat Interface */}
           <Card className="lg:col-span-3">
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="relative flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-[#194e3e] flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
                   <div>
-                    <CardTitle className="text-lg">
-                      AI Financial Advisor
+                    <CardTitle className="text-lg flex gap-2 pb-2">
+                      <div className="w-8 h-8 rounded-full bg-[#194e3e] flex items-center justify-center">
+                        <img
+                          src={Clara}
+                          alt="clara photo"
+                          className="w-10 h-10"
+                        />
+                      </div>
+                      Clara
                     </CardTitle>
-                    <CardDescription>Online • Ready to help</CardDescription>
+                    <CardDescription className="text-sm md:tex-base">
+                      Meet Clara, your intelligent consultant, delivering clear,
+                      personalized guidance to optimize your experience.
+                    </CardDescription>
                   </div>
                 </div>
                 <Badge
                   variant="secondary"
-                  className="bg-green-100 text-green-800"
+                  className="bg-green-100 text-green-800 absolute top-0 right-0"
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                   Active
@@ -352,8 +262,7 @@ export function AIConsultant() {
               </div>
             </CardHeader>
             <CardContent className="p-0">
-              {/* Messages Area */}
-              <ScrollArea className="h-[500px] px-6">
+              <ScrollArea className="h-[280px] px-6">
                 <div className="space-y-4 pb-4">
                   {messages.map((message) => (
                     <div
@@ -363,7 +272,11 @@ export function AIConsultant() {
                       {message.sender === 'ai' && (
                         <Avatar className="w-8 h-8 mt-1">
                           <AvatarFallback className="bg-[#194e3e] text-white">
-                            <Bot className="w-4 h-4" />
+                            <img
+                              src={Clara}
+                              alt="clara photo"
+                              className="w-10 h-10"
+                            />
                           </AvatarFallback>
                         </Avatar>
                       )}
@@ -427,7 +340,11 @@ export function AIConsultant() {
                     <div className="flex gap-3 justify-start">
                       <Avatar className="w-8 h-8 mt-1">
                         <AvatarFallback className="bg-[#194e3e] text-white">
-                          <Bot className="w-4 h-4" />
+                          <img
+                            src={Clara}
+                            alt="clara photo"
+                            className="w-10 h-10"
+                          />
                         </AvatarFallback>
                       </Avatar>
                       <div className="max-w-[80%] rounded-lg px-4 py-2 bg-muted">
@@ -454,8 +371,7 @@ export function AIConsultant() {
                 </div>
               </ScrollArea>
 
-              {/* Input Area */}
-              <div className="border-t p-4">
+              <div className="border-t  p-4">
                 <div className="flex gap-2">
                   <Textarea
                     ref={textareaRef}
@@ -463,16 +379,17 @@ export function AIConsultant() {
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="min-h-[60px] resize-none"
+                    className="min-h-[60px] placeholder:text-xs lg:placeholder:text-base resize-none"
                     disabled={isLoading}
                   />
                   <Button
                     onClick={handleSendMessage}
                     disabled={!inputMessage.trim() || isLoading}
                     style={{ backgroundColor: '#194e3e' }}
-                    className="hover:bg-[#2d7a5f] px-6"
+                    className="hover:bg-[#2d7a5f] px-6 h-14 rounded-lg"
+                    size="lg"
                   >
-                    <Send className="w-4 h-4" />
+                    <ArrowUp className="w-10 h-10" />
                   </Button>
                 </div>
                 <div className="flex items-center justify-between mt-2 text-xs text-muted-foreground">
