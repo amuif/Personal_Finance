@@ -2,18 +2,10 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { Tableschema } from '@/schemas/table_schema';
 import z from 'zod';
 import { Checkbox } from '../ui/checkbox';
-import { IconDotsVertical } from '@tabler/icons-react';
 import { toast } from 'sonner';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
-import { Button } from '../ui/button';
+
 import { DragHandle } from '../data-table';
 import { TableCellViewer } from '../data-table';
 import {
@@ -75,7 +67,7 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     cell: ({ row }) => (
       <div className="w-32">
         <Select>
-          <SelectTrigger className="w-24 !text-black dark:text-muted-foreground truncate">
+          <SelectTrigger className="  truncate">
             {row.original.type}
           </SelectTrigger>
           <SelectContent>
@@ -94,12 +86,13 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
     header: 'Status',
     cell: ({ row }) => (
       <Select>
-        <SelectTrigger className="!text-black dark:text-muted-foreground w-24 truncate">
+        <SelectTrigger className=" truncate">
           {row.original.status}
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="ongoing">Ongoing</SelectItem>
             <SelectItem value="done">Done</SelectItem>
           </SelectGroup>
         </SelectContent>
@@ -162,31 +155,6 @@ const columns: ColumnDef<z.infer<typeof Tableschema>>[] = [
           id={`${row.original.id}-limit`}
         />
       </form>
-    ),
-  },
-  {
-    id: 'actions',
-    cell: () => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
-            size="icon"
-            aria-label="open menu"
-          >
-            <IconDotsVertical />
-            <span className="sr-only">Open menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>Make a copy</DropdownMenuItem>
-          <DropdownMenuItem>Favorite</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     ),
   },
 ];

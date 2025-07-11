@@ -4,7 +4,7 @@ import NotFound from '@/components/others/not-found';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { supabase } from '@/supabase/supabase-client';
-import { useTheme } from '@/components/theme-provider'; 
+import { useTheme } from '@/components/theme-provider';
 
 export const Route = createFileRoute('/')({
   component: LandingOrRedirect,
@@ -17,7 +17,7 @@ function LandingOrRedirect() {
   const { setTheme } = useTheme();
 
   useEffect(() => {
-    setTheme('light'); 
+    setTheme('light');
     async function checkAuth() {
       const { data } = await supabase.auth.getUser();
       if (data?.user) {
