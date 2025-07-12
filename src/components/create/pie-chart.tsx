@@ -52,24 +52,31 @@ const chartConfig = {
 
 export function ChartPieLabel() {
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="items-center pb-0">
-        <CardTitle className="text-black dark:text-white font-bold">
-          Pie Chart - Label
-        </CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="[&_.recharts-pie-label-text]:fill-foreground mx-auto aspect-square max-h-[250px] pb-0"
-        >
-          <PieChart>
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="visitors" label nameKey="browser" />
-          </PieChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+    <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card  *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs">
+      <Card className="flex flex-col @container/card">
+        <CardHeader className="items-center pb-0">
+          <CardTitle className="text-black dark:text-white font-bold">
+            Pie Chart - Label
+          </CardTitle>
+          <CardDescription>January - June 2024</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1 pb-0">
+          <ChartContainer
+            config={chartConfig}
+            className="[&_.recharts-pie-label-text]:fill-foreground mx-auto aspect-square max-h-[376px] pb-0"
+          >
+            <PieChart>
+              <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+              <Pie
+                data={chartData}
+                dataKey="visitors"
+                label
+                nameKey="browser"
+              />
+            </PieChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

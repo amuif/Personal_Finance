@@ -8,141 +8,141 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as UpdatePasswordRouteImport } from './routes/update-password';
-import { Route as PasswordResetRouteImport } from './routes/password-reset';
-import { Route as LoginRouteImport } from './routes/login';
-import { Route as ComingSoonRouteImport } from './routes/coming-soon';
-import { Route as AboutRouteImport } from './routes/about';
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated';
-import { Route as IndexRouteImport } from './routes/index';
-import { Route as AuthenticatedWalletRouteImport } from './routes/_authenticated/wallet';
-import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings';
-import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile';
-import { Route as AuthenticatedPlansRouteImport } from './routes/_authenticated/plans';
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard';
-import { Route as AuthenticatedCreateRouteImport } from './routes/_authenticated/create';
-import { Route as AuthenticatedConsultRouteImport } from './routes/_authenticated/consult';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpdatePasswordRouteImport } from './routes/update-password'
+import { Route as PasswordResetRouteImport } from './routes/password-reset'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ComingSoonRouteImport } from './routes/coming-soon'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedWalletRouteImport } from './routes/_authenticated/wallet'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedPlansRouteImport } from './routes/_authenticated/plans'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedCreateRouteImport } from './routes/_authenticated/create'
+import { Route as AuthenticatedConsultRouteImport } from './routes/_authenticated/consult'
 
 const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
   id: '/update-password',
   path: '/update-password',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const PasswordResetRoute = PasswordResetRouteImport.update({
   id: '/password-reset',
   path: '/password-reset',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const ComingSoonRoute = ComingSoonRouteImport.update({
   id: '/coming-soon',
   path: '/coming-soon',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthenticatedWalletRoute = AuthenticatedWalletRouteImport.update({
   id: '/wallet',
   path: '/wallet',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 const AuthenticatedPlansRoute = AuthenticatedPlansRouteImport.update({
   id: '/plans',
   path: '/plans',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 const AuthenticatedCreateRoute = AuthenticatedCreateRouteImport.update({
   id: '/create',
   path: '/create',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 const AuthenticatedConsultRoute = AuthenticatedConsultRouteImport.update({
   id: '/consult',
   path: '/consult',
   getParentRoute: () => AuthenticatedRoute,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/about': typeof AboutRoute;
-  '/coming-soon': typeof ComingSoonRoute;
-  '/login': typeof LoginRoute;
-  '/password-reset': typeof PasswordResetRoute;
-  '/update-password': typeof UpdatePasswordRoute;
-  '/consult': typeof AuthenticatedConsultRoute;
-  '/create': typeof AuthenticatedCreateRoute;
-  '/dashboard': typeof AuthenticatedDashboardRoute;
-  '/plans': typeof AuthenticatedPlansRoute;
-  '/profile': typeof AuthenticatedProfileRoute;
-  '/settings': typeof AuthenticatedSettingsRoute;
-  '/wallet': typeof AuthenticatedWalletRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/coming-soon': typeof ComingSoonRoute
+  '/login': typeof LoginRoute
+  '/password-reset': typeof PasswordResetRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/consult': typeof AuthenticatedConsultRoute
+  '/create': typeof AuthenticatedCreateRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/plans': typeof AuthenticatedPlansRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/wallet': typeof AuthenticatedWalletRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/about': typeof AboutRoute;
-  '/coming-soon': typeof ComingSoonRoute;
-  '/login': typeof LoginRoute;
-  '/password-reset': typeof PasswordResetRoute;
-  '/update-password': typeof UpdatePasswordRoute;
-  '/consult': typeof AuthenticatedConsultRoute;
-  '/create': typeof AuthenticatedCreateRoute;
-  '/dashboard': typeof AuthenticatedDashboardRoute;
-  '/plans': typeof AuthenticatedPlansRoute;
-  '/profile': typeof AuthenticatedProfileRoute;
-  '/settings': typeof AuthenticatedSettingsRoute;
-  '/wallet': typeof AuthenticatedWalletRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/coming-soon': typeof ComingSoonRoute
+  '/login': typeof LoginRoute
+  '/password-reset': typeof PasswordResetRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/consult': typeof AuthenticatedConsultRoute
+  '/create': typeof AuthenticatedCreateRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/plans': typeof AuthenticatedPlansRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/wallet': typeof AuthenticatedWalletRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  '/': typeof IndexRoute;
-  '/_authenticated': typeof AuthenticatedRouteWithChildren;
-  '/about': typeof AboutRoute;
-  '/coming-soon': typeof ComingSoonRoute;
-  '/login': typeof LoginRoute;
-  '/password-reset': typeof PasswordResetRoute;
-  '/update-password': typeof UpdatePasswordRoute;
-  '/_authenticated/consult': typeof AuthenticatedConsultRoute;
-  '/_authenticated/create': typeof AuthenticatedCreateRoute;
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute;
-  '/_authenticated/plans': typeof AuthenticatedPlansRoute;
-  '/_authenticated/profile': typeof AuthenticatedProfileRoute;
-  '/_authenticated/settings': typeof AuthenticatedSettingsRoute;
-  '/_authenticated/wallet': typeof AuthenticatedWalletRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/about': typeof AboutRoute
+  '/coming-soon': typeof ComingSoonRoute
+  '/login': typeof LoginRoute
+  '/password-reset': typeof PasswordResetRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/_authenticated/consult': typeof AuthenticatedConsultRoute
+  '/_authenticated/create': typeof AuthenticatedCreateRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/plans': typeof AuthenticatedPlansRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/wallet': typeof AuthenticatedWalletRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
@@ -156,8 +156,8 @@ export interface FileRouteTypes {
     | '/plans'
     | '/profile'
     | '/settings'
-    | '/wallet';
-  fileRoutesByTo: FileRoutesByTo;
+    | '/wallet'
+  fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
@@ -171,7 +171,7 @@ export interface FileRouteTypes {
     | '/plans'
     | '/profile'
     | '/settings'
-    | '/wallet';
+    | '/wallet'
   id:
     | '__root__'
     | '/'
@@ -187,130 +187,130 @@ export interface FileRouteTypes {
     | '/_authenticated/plans'
     | '/_authenticated/profile'
     | '/_authenticated/settings'
-    | '/_authenticated/wallet';
-  fileRoutesById: FileRoutesById;
+    | '/_authenticated/wallet'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren;
-  AboutRoute: typeof AboutRoute;
-  ComingSoonRoute: typeof ComingSoonRoute;
-  LoginRoute: typeof LoginRoute;
-  PasswordResetRoute: typeof PasswordResetRoute;
-  UpdatePasswordRoute: typeof UpdatePasswordRoute;
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  ComingSoonRoute: typeof ComingSoonRoute
+  LoginRoute: typeof LoginRoute
+  PasswordResetRoute: typeof PasswordResetRoute
+  UpdatePasswordRoute: typeof UpdatePasswordRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/update-password': {
-      id: '/update-password';
-      path: '/update-password';
-      fullPath: '/update-password';
-      preLoaderRoute: typeof UpdatePasswordRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/update-password'
+      path: '/update-password'
+      fullPath: '/update-password'
+      preLoaderRoute: typeof UpdatePasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/password-reset': {
-      id: '/password-reset';
-      path: '/password-reset';
-      fullPath: '/password-reset';
-      preLoaderRoute: typeof PasswordResetRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/password-reset'
+      path: '/password-reset'
+      fullPath: '/password-reset'
+      preLoaderRoute: typeof PasswordResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
-      id: '/login';
-      path: '/login';
-      fullPath: '/login';
-      preLoaderRoute: typeof LoginRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/coming-soon': {
-      id: '/coming-soon';
-      path: '/coming-soon';
-      fullPath: '/coming-soon';
-      preLoaderRoute: typeof ComingSoonRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/coming-soon'
+      path: '/coming-soon'
+      fullPath: '/coming-soon'
+      preLoaderRoute: typeof ComingSoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
-      id: '/about';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof AboutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
-      id: '/_authenticated';
-      path: '';
-      fullPath: '';
-      preLoaderRoute: typeof AuthenticatedRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/wallet': {
-      id: '/_authenticated/wallet';
-      path: '/wallet';
-      fullPath: '/wallet';
-      preLoaderRoute: typeof AuthenticatedWalletRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof AuthenticatedWalletRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/settings': {
-      id: '/_authenticated/settings';
-      path: '/settings';
-      fullPath: '/settings';
-      preLoaderRoute: typeof AuthenticatedSettingsRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/profile': {
-      id: '/_authenticated/profile';
-      path: '/profile';
-      fullPath: '/profile';
-      preLoaderRoute: typeof AuthenticatedProfileRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/plans': {
-      id: '/_authenticated/plans';
-      path: '/plans';
-      fullPath: '/plans';
-      preLoaderRoute: typeof AuthenticatedPlansRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/plans'
+      path: '/plans'
+      fullPath: '/plans'
+      preLoaderRoute: typeof AuthenticatedPlansRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard';
-      path: '/dashboard';
-      fullPath: '/dashboard';
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/create': {
-      id: '/_authenticated/create';
-      path: '/create';
-      fullPath: '/create';
-      preLoaderRoute: typeof AuthenticatedCreateRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof AuthenticatedCreateRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/consult': {
-      id: '/_authenticated/consult';
-      path: '/consult';
-      fullPath: '/consult';
-      preLoaderRoute: typeof AuthenticatedConsultRouteImport;
-      parentRoute: typeof AuthenticatedRoute;
-    };
+      id: '/_authenticated/consult'
+      path: '/consult'
+      fullPath: '/consult'
+      preLoaderRoute: typeof AuthenticatedConsultRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedConsultRoute: typeof AuthenticatedConsultRoute;
-  AuthenticatedCreateRoute: typeof AuthenticatedCreateRoute;
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute;
-  AuthenticatedPlansRoute: typeof AuthenticatedPlansRoute;
-  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute;
-  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute;
-  AuthenticatedWalletRoute: typeof AuthenticatedWalletRoute;
+  AuthenticatedConsultRoute: typeof AuthenticatedConsultRoute
+  AuthenticatedCreateRoute: typeof AuthenticatedCreateRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPlansRoute: typeof AuthenticatedPlansRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedWalletRoute: typeof AuthenticatedWalletRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -321,11 +321,11 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedWalletRoute: AuthenticatedWalletRoute,
-};
+}
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
-  AuthenticatedRouteChildren
-);
+  AuthenticatedRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -335,7 +335,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PasswordResetRoute: PasswordResetRoute,
   UpdatePasswordRoute: UpdatePasswordRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()

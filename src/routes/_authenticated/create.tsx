@@ -1,4 +1,4 @@
-import Form from '@/components/create/form';
+import CreateForm from '@/components/create/create-form';
 import { DataTable } from '@/components/data-table';
 import LoadingComponent from '@/components/loading-component';
 import { createFileRoute } from '@tanstack/react-router';
@@ -15,7 +15,7 @@ function CreateComponent() {
     <div className="flex flex-col px-3 py-5 gap-10 ">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 ">
         <div>
-          <Form />
+          <CreateForm />
         </div>
         <div>
           <ChartPieLabel />
