@@ -145,7 +145,12 @@ const CreateForm = ({ className }: { className?: string }) => {
                 {(field) => (
                   <div className="flex flex-col gap-2 w-full">
                     <Label htmlFor={field.name}>Target(optional)</Label>
-                    <Input placeholder="Enter target amount" value={field.state.value} onChange={(e)=>field.handleChange(e.target.value)} className="" />
+                    <Input
+                      placeholder="Enter target amount"
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      className=""
+                    />
                   </div>
                 )}
               </form.Field>
@@ -208,13 +213,12 @@ const CreateForm = ({ className }: { className?: string }) => {
             </div>
           ) : null}
           <div className="flex items-center justify-end w-full gap-5">
-            <form.Subscribe> 
-                    <Button form="create-form" variant="outline">
-              Discard
-            </Button>
-
+            <form.Subscribe>
+              <Button form="create-form" variant="outline">
+                Discard
+              </Button>
             </form.Subscribe>
-           <form.Subscribe>
+            <form.Subscribe>
               {' '}
               <Button form="create-form">Save</Button>
             </form.Subscribe>
