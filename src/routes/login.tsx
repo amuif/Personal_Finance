@@ -1,6 +1,5 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { LoginForm } from '@/components/signup/login-form';
-import { MoveLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import SignUpForm from '@/components/signup/signup-form';
 import LoadingComponent from '@/components/loading-component';
@@ -15,17 +14,6 @@ export default function LoginPage() {
   return (
     <div className="grid   min-h-svh lg:grid-cols-2">
       <div className="flex relative flex-col gap-4 p-3 items-center justify-center ">
-        <div className="flex absolute gap-2 w-full top-5 left-5">
-          <Link to="/" className="flex items-center gap-2 font-medium">
-            <div className=" text-gray-500 dark:text-white/80 flex">
-              <MoveLeftIcon
-                width={20}
-                className="font-extrabold flex items-center  justify-center"
-              />
-            </div>
-            Home
-          </Link>
-        </div>
         <div className="flex items-center justify-center">
           <div className="w-full max-w-xs transition-all duration-1000">
             {showLogIn ? (
