@@ -1,8 +1,0 @@
-User-agent: *
-
-Disallow: /login/
-Disallow: /signup/
-
-Allow: /
-
-Sitemap: https://clarityfinance.netlify.app/
