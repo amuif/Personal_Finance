@@ -1,25 +1,19 @@
 <script lang="ts">
 	import CameraIcon from "@tabler/icons-svelte/icons/camera";
-	import ChartBarIcon from "@tabler/icons-svelte/icons/chart-bar";
-	import DashboardIcon from "@tabler/icons-svelte/icons/dashboard";
-	import DatabaseIcon from "@tabler/icons-svelte/icons/database";
 	import FileAiIcon from "@tabler/icons-svelte/icons/file-ai";
 	import FileDescriptionIcon from "@tabler/icons-svelte/icons/file-description";
-	import FileWordIcon from "@tabler/icons-svelte/icons/file-word";
-	import FolderIcon from "@tabler/icons-svelte/icons/folder";
 	import HelpIcon from "@tabler/icons-svelte/icons/help";
 	import InnerShadowTopIcon from "@tabler/icons-svelte/icons/inner-shadow-top";
-	import ListDetailsIcon from "@tabler/icons-svelte/icons/list-details";
-	import ReportIcon from "@tabler/icons-svelte/icons/report";
 	import SearchIcon from "@tabler/icons-svelte/icons/search";
 	import SettingsIcon from "@tabler/icons-svelte/icons/settings";
-	import UsersIcon from "@tabler/icons-svelte/icons/users";
-	import NavDocuments from "./nav-documents.svelte";
 	import NavMain from "./nav-main.svelte";
 	import NavSecondary from "./nav-secondary.svelte";
 	import NavUser from "./nav-user.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
+    import {SchoolReportCardIcon, FolderCheckIcon,CheckListIcon,AnalyticsUpFreeIcons,DashboardSquare03Icon,Route01FreeIcons,UserAccountIcon} from '@hugeicons/core-free-icons';
+    import NavPlanning from "./nav-planning.svelte";
+    import NavInsights from "./nav-insights.svelte";
 
 	const data = {
 		user: {
@@ -27,116 +21,51 @@
 			email: "m@example.com",
 			avatar: "/avatars/shadcn.jpg",
 		},
-		navMain: [
+  navInsights:[
+ 		{
+				name: "Analytics",
+				url: "#",
+				icon: AnalyticsUpFreeIcons ,
+			},
+      {
+        name:'Report',
+        url:'#',
+        icon:SchoolReportCardIcon
+      }
+	  ],
+		documents: [
+			{
+				name: "Budget",
+				url: "#",
+				icon: FolderCheckIcon,
+			},
+			{
+				name: "Plan",
+				url: "#",
+				icon:CheckListIcon ,
+			},
+			
+		],
+	};
+
+  const navMain= [
 			{
 				title: "Dashboard",
 				url: "#",
-				icon: DashboardIcon,
+				icon: DashboardSquare03Icon,
+			},
+		{
+				title: "Track Expenses",
+				url: "#",
+				icon: Route01FreeIcons,
 			},
 			{
-				title: "Lifecycle",
+				title: "Accounts",
 				url: "#",
-				icon: ListDetailsIcon,
+				icon: UserAccountIcon,
 			},
-			{
-				title: "Analytics",
-				url: "#",
-				icon: ChartBarIcon,
-			},
-			{
-				title: "Projects",
-				url: "#",
-				icon: FolderIcon,
-			},
-			{
-				title: "Team",
-				url: "#",
-				icon: UsersIcon,
-			},
-		],
-		navClouds: [
-			{
-				title: "Capture",
-				icon: CameraIcon,
-				isActive: true,
-				url: "#",
-				items: [
-					{
-						title: "Active Proposals",
-						url: "#",
-					},
-					{
-						title: "Archived",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Proposal",
-				icon: FileDescriptionIcon,
-				url: "#",
-				items: [
-					{
-						title: "Active Proposals",
-						url: "#",
-					},
-					{
-						title: "Archived",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Prompts",
-				icon: FileAiIcon,
-				url: "#",
-				items: [
-					{
-						title: "Active Proposals",
-						url: "#",
-					},
-					{
-						title: "Archived",
-						url: "#",
-					},
-				],
-			},
-		],
-		navSecondary: [
-			{
-				title: "Settings",
-				url: "#",
-				icon: SettingsIcon,
-			},
-			{
-				title: "Get Help",
-				url: "#",
-				icon: HelpIcon,
-			},
-			{
-				title: "Search",
-				url: "#",
-				icon: SearchIcon,
-			},
-		],
-		documents: [
-			{
-				name: "Data Library",
-				url: "#",
-				icon: DatabaseIcon,
-			},
-			{
-				name: "Reports",
-				url: "#",
-				icon: ReportIcon,
-			},
-			{
-				name: "Word Assistant",
-				url: "#",
-				icon: FileWordIcon,
-			},
-		],
-	};
+		]
+
 
 	let { ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
@@ -145,11 +74,10 @@
 	<Sidebar.Header>
 		<Sidebar.Menu>
 			<Sidebar.MenuItem>
-				<Sidebar.MenuButton class="data-[slot=sidebar-menu-button]:!p-1.5">
+				<Sidebar.MenuButton class="data-[slot=sidebar-menu-button]:p-1.5!">
 					{#snippet child({ props })}
 						<a href="##" {...props}>
-							<InnerShadowTopIcon class="!size-5" />
-							<span class="text-base font-semibold">Acme Inc.</span>
+							<span class="text-base font-semibold">Clarity</span>
 						</a>
 					{/snippet}
 				</Sidebar.MenuButton>
@@ -157,9 +85,9 @@
 		</Sidebar.Menu>
 	</Sidebar.Header>
 	<Sidebar.Content>
-		<NavMain items={data.navMain} />
-		<NavDocuments items={data.documents} />
-		<NavSecondary items={data.navSecondary} class="mt-auto" />
+		<NavMain items={navMain} />
+		<NavPlanning items={data.documents} />
+    <NavInsights items={data.navInsights}/>
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<NavUser user={data.user} />
