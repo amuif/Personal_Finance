@@ -18,7 +18,20 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-
+  // app
+  currency      String        @default("USD")
+  bankAccounts BankAccount[]
+  categories    Category[]
+  transactions  Transaction[]
+  budgets       Budget[]
+  goals         Goal[]
+  bills         Bill[]
+  tags          Tag[]
+  notifications Notification[]
+  aiInsights    AiInsight[]
+  reports       Report[]
+  investments   Investment[]
+ 
   @@map("user")
 }
 
@@ -68,4 +81,355 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model BankAccount {
+  id              String        @id @default(cuid())
+  userId          String        @map("user_id")
+  name            String
+  type            AccountType
+  institutionName String?       @map("institution_name")
+  balance         Decimal       @default(0) @db.Decimal(19, 4)
+  currency        String        @default("USD")
+  isArchived      Boolean       @default(false) @map("is_archived")
+  color           String?
+  icon            String?
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  
+  // Relations
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions    Transaction[]
+  bills           Bill[]
+  goals           Goal[]
+  investments     Investment[]
+  
+  @@map("accounts")
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+  CREDIT_CARD
+  LOAN
+  INVESTMENT
+  CASH
+  OTHER
+}
+
+model Category {
+  id               String        @id @default(cuid())
+  userId           String        @map("user_id")
+  name             String
+  type             CategoryType
+  parentCategoryId String?       @map("parent_category_id")
+  icon             String?
+  color            String?
+  isDefault        Boolean       @default(false) @map("is_default")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+  
+  // Relations
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentCategory   Category?     @relation("CategoryHierarchy", fields: [parentCategoryId], references: [id])
+  subcategories    Category[]    @relation("CategoryHierarchy")
+  transactions     Transaction[]
+  budgets          Budget[]
+  bills            Bill[]
+  
+  @@map("categories")
+  @@unique([userId, name])
+}
+
+enum CategoryType {
+  INCOME
+  EXPENSE
+  TRANSFER
+}
+
+model Transaction {
+  id              String        @id @default(cuid())
+  userId          String        @map("user_id")
+  accountId       String        @map("account_id")
+  categoryId      String?       @map("category_id")
+  amount          Decimal       @db.Decimal(19, 4)
+  type            TransactionType
+  description     String
+  date            DateTime
+  isRecurring     Boolean       @default(false) @map("is_recurring")
+  recurringRule   Json?         @map("recurring_rule") // Store frequency rules
+  locationLat     Float?        @map("location_lat")
+  locationLng     Float?        @map("location_lng")
+  receiptUrl      String?       @map("receipt_url")
+  notes           String?
+  isSplit         Boolean       @default(false) @map("is_split")
+  splitDetails    Json?         @map("split_details")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  
+  // Relations
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bankAccount     BankAccount       @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  category        Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tags            TransactionTag[]
+  
+  // Indexes for performance
+  @@index([userId])
+  @@index([userId, date])
+  @@index([userId, type])
+  @@index([userId, categoryId])
+  @@index([userId, accountId])
+  @@index([date])
+  @@map("transactions")
+}
+
+enum TransactionType {
+  EXPENSE
+  INCOME
+  TRANSFER
+}
+
+model Tag {
+  id        String        @id @default(cuid())
+  userId    String        @map("user_id")
+  name      String
+  color     String?
+  createdAt DateTime      @default(now()) @map("created_at")
+  
+  // Relations
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions TransactionTag[]
+  
+  @@map("tags")
+  @@unique([userId, name])
+}
+
+model TransactionTag {
+  transactionId String      @map("transaction_id")
+  tagId         String      @map("tag_id")
+  
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  tag           Tag         @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  @@id([transactionId, tagId])
+  @@map("transaction_tags")
+}
+
+model Budget {
+  id                   String        @id @default(cuid())
+  userId               String        @map("user_id")
+  name                 String
+  amount               Decimal       @db.Decimal(19, 4)
+  period               BudgetPeriod
+  startDate            DateTime      @map("start_date")
+  endDate              DateTime      @map("end_date")
+  categoryId           String?       @map("category_id")
+  rolloverEnabled      Boolean       @default(false) @map("rollover_enabled")
+  rolloverAmount       Decimal?      @default(0) @db.Decimal(19, 4) @map("rollover_amount")
+  alertsEnabled        Boolean       @default(true) @map("alerts_enabled")
+  alertThreshold       Int?          @default(80) @map("alert_threshold") // Percentage
+  createdAt            DateTime      @default(now()) @map("created_at")
+  updatedAt            DateTime      @updatedAt @map("updated_at")
+  
+  // Relations
+  user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category             Category?     @relation(fields: [categoryId], references: [id])
+  
+  @@index([userId, startDate, endDate])
+  @@map("budgets")
+}
+
+enum BudgetPeriod {
+  WEEKLY
+  MONTHLY
+  YEARLY
+  CUSTOM
+}
+
+model Bill {
+  id            String        @id @default(cuid())
+  userId        String        @map("user_id")
+  name          String
+  amount        Decimal       @db.Decimal(19, 4)
+  dueDay        Int           @map("due_day") // 1-31
+  frequency     BillFrequency
+  categoryId    String?       @map("category_id")
+  accountId     String?       @map("account_id")
+  isPaid        Boolean       @default(false) @map("is_paid")
+  lastPaidDate  DateTime?     @map("last_paid_date")
+  nextDueDate   DateTime      @map("next_due_date")
+  notes         String?
+  isActive      Boolean       @default(true) @map("is_active")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+  
+  // Relations
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category      Category?     @relation(fields: [categoryId], references: [id])
+  bankAccount   BankAccount?      @relation(fields: [accountId], references: [id])
+  
+  @@index([userId, nextDueDate, isPaid])
+  @@map("bills")
+}
+
+enum BillFrequency {
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  YEARLY
+  ONE_TIME
+}
+
+model AiInsight {
+  id              String          @id @default(cuid())
+  userId          String          @map("user_id")
+  type            InsightType
+  title           String
+  description     String?
+  data            Json 
+  confidenceScore Float?          @map("confidence_score") @default(0)
+  isActionable    Boolean         @default(false) @map("is_actionable")
+  actionTaken     Boolean         @default(false) @map("action_taken")
+  expiresAt       DateTime?       @map("expires_at")
+  createdAt       DateTime        @default(now()) @map("created_at")
+  
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, type, createdAt])
+  @@map("ai_insights")
+}
+
+enum InsightType {
+  CATEGORIZATION
+  PREDICTION
+  ANOMALY
+  SUGGESTION
+  INSIGHT
+}
+
+// Notifications
+model Notification {
+  id            String          @id @default(cuid())
+  userId        String          @map("user_id")
+  type          NotificationType
+  title         String
+  message       String
+  data          Json?           // Related data
+  isRead        Boolean         @default(false) @map("is_read")
+  scheduledFor  DateTime?       @map("scheduled_for")
+  createdAt     DateTime        @default(now()) @map("created_at")
+  
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, isRead, createdAt])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  BILL_REMINDER
+  BUDGET_ALERT
+  GOAL_MILESTONE
+  TRANSACTION_ANOMALY
+  INSIGHT
+  SYSTEM
+}
+
+model Goal {
+  id                    String        @id @default(cuid())
+  userId                String        @map("user_id")
+  name                  String
+  targetAmount          Decimal       @db.Decimal(19, 4) @map("target_amount")
+  currentAmount         Decimal       @default(0) @db.Decimal(19, 4) @map("current_amount")
+  targetDate            DateTime      @map("target_date")
+  type                  GoalType
+  priority              PriorityLevel
+  status                GoalStatus    @default(ACTIVE)
+  milestones            Json?     
+  recurringContribution Decimal?      @db.Decimal(19, 4) @map("recurring_contribution")
+  contributionFrequency Frequency?
+  accountId             String?       @map("account_id")
+  createdAt             DateTime      @default(now()) @map("created_at")
+  updatedAt             DateTime      @updatedAt @map("updated_at")
+  
+  user                  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bankAccount           BankAccount?      @relation(fields: [accountId], references: [id])
+  
+  @@index([userId, status, targetDate])
+  @@map("goals")
+}
+
+model Report {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  name        String
+  type        ReportType
+  filters     Json
+  data        Json?    // Cached report data
+  isFavorite  Boolean  @default(false) @map("is_favorite")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, type, createdAt])
+  @@map("reports")
+}
+
+enum ReportType {
+  SPENDING
+  INCOME
+  NET_WORTH
+  CASH_FLOW
+  CUSTOM
+}
+
+model Investment {
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  bankAccountId String  @map("bank_account_id")
+  symbol       String
+  name         String
+  quantity     Decimal  @db.Decimal(19, 4)
+  averagePrice Decimal  @db.Decimal(19, 4) @map("average_price")
+  currentPrice Decimal? @db.Decimal(19, 4) @map("current_price")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bankAccount  BankAccount @relation(fields: [bankAccountId], references: [id])
+  
+  @@unique([userId, bankAccountId, symbol])
+  @@map("investments")
+}
+
+enum GoalType {
+  EMERGENCY_FUND
+  TRAVEL
+  RETIREMENT
+  DEBT_PAYOFF
+  SAVINGS
+  INVESTMENT
+  CUSTOM
+}
+
+enum PriorityLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum GoalStatus {
+  ACTIVE
+  COMPLETED
+  PAUSED
+  CANCELLED
+}
+
+enum Frequency {
+  DAILY
+  WEEKLY
+  BIWEEKLY
+  MONTHLY
+  QUARTERLY
+  YEARLY
 }
