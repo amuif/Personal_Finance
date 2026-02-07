@@ -5,7 +5,7 @@
 
   let {
     items,
-  }: { items: { title: string; url: string; icon?: IconSvgElement }[] } =
+  }: { items: { title: string; url: string; icon: IconSvgElement }[] } =
     $props();
 </script>
 
@@ -15,11 +15,13 @@
     <Sidebar.Menu>
       {#each items as item (item.title)}
         <Sidebar.MenuItem>
-          <Sidebar.MenuButton tooltipContent={item.title}>
-            {#if item.icon}
-              <HugeiconsIcon icon={item.icon} />
-            {/if}
-            <span>{item.title}</span>
+          <Sidebar.MenuButton>
+            {#snippet child({ props })}
+              <a {...props} href={item.url}>
+                <HugeiconsIcon icon={item.icon} />
+                <span>{item.title}</span>
+              </a>
+            {/snippet}
           </Sidebar.MenuButton>
         </Sidebar.MenuItem>
       {/each}

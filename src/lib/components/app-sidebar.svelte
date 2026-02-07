@@ -46,17 +46,17 @@
   const navMain = [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: DashboardSquare03Icon,
     },
     {
       title: "Track Expenses",
-      url: "#",
+      url: "/track",
       icon: Route01FreeIcons,
     },
     {
       title: "Accounts",
-      url: "#",
+      url: "/accounts",
       icon: UserAccountIcon,
     },
   ];
@@ -74,13 +74,7 @@
   <Sidebar.Header>
     <Sidebar.Menu>
       <Sidebar.MenuItem>
-        <Sidebar.MenuButton class="data-[slot=sidebar-menu-button]:p-1.5!">
-          {#snippet child({ props })}
-            <a href="##" {...props}>
-              <span class="text-base font-semibold">Clarity</span>
-            </a>
-          {/snippet}
-        </Sidebar.MenuButton>
+        <span class="text-lg text-center font-semibold">Clarity</span>
       </Sidebar.MenuItem>
     </Sidebar.Menu>
   </Sidebar.Header>
