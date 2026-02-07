@@ -2,8 +2,11 @@ import { auth } from "$lib/auth";
 import { svelteKitHandler } from "better-auth/svelte-kit";
 import { building } from "$app/environment";
 import { type Handle } from "@sveltejs/kit";
+import { redirect } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
+  const pathname = event.url.toString();
+  const allowedPages = ["login", "signup", "/"];
   const session = await auth.api.getSession({
     headers: event.request.headers,
   });
@@ -11,6 +14,9 @@ export const handle: Handle = async ({ event, resolve }) => {
   if (session) {
     event.locals.session = session.session;
     event.locals.user = session.user;
+  }
+  if (!session && allowedPages.includes(pathname)) {
+    redirect(303, "/login");
   }
   return svelteKitHandler({ event, resolve, auth, building });
 };
