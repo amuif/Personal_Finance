@@ -18,7 +18,7 @@
   } = $props();
 </script>
 
-<Card.Root class='h-full'>
+<Card.Root class="h-full @container/card">
   <Card.Header>
     <Card.Title>{title}</Card.Title>
     <Card.Description>{description}</Card.Description>

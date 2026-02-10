@@ -2,6 +2,7 @@
   import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/svelte";
 
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import { page } from "$app/state";
 
   let {
     items,
@@ -14,7 +15,9 @@
   <Sidebar.Menu>
     {#each items as item (item.name)}
       <Sidebar.MenuItem>
-        <Sidebar.MenuButton>
+        <Sidebar.MenuButton
+          class={item.url === page.url.toString() ? "bg-primary " : ""}
+        >
           {#snippet child({ props })}
             <a {...props} href={item.url}>
               <HugeiconsIcon icon={item.icon} />

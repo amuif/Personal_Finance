@@ -32,12 +32,12 @@
     documents: [
       {
         name: "Budget",
-        url: "#",
+        url: "/budget",
         icon: FolderCheckIcon,
       },
       {
         name: "Plan",
-        url: "#",
+        url: "/plan",
         icon: CheckListIcon,
       },
     ],
