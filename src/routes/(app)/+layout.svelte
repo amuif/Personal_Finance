@@ -20,6 +20,8 @@
   <AppSidebar variant="default" {user} />
   <Sidebar.Inset>
     <SiteHeader />
-    <slot />
+    <div class="p-2">
+      <slot />
+    </div>
   </Sidebar.Inset>
 </Sidebar.Provider>
