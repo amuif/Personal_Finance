@@ -55,8 +55,8 @@
       icon: Route01FreeIcons,
     },
     {
-      title: "Accounts",
-      url: "/accounts",
+      title: "Balance",
+      url: "/balance",
       icon: UserAccountIcon,
     },
   ];
